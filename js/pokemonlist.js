@@ -8,7 +8,8 @@ let pokelist = () => {
         let pokemon_values = Object.values(pokemon_list.results);
         
         let species_list = document.getElementById('speciesList');
-        let species_create = document.createElement('div');
+        let species_create;
+        
         (function() {
             let i = 0; 
             species_list.className = '';
