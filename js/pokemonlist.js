@@ -1,6 +1,7 @@
 "use strict"
 
-import * as html_tags from './html_tags.js';
+//import * as html_tags from './html_tags.js';
+//CORS ISSUE - WILL COME BACK LATER AND REWORK IMPORTS
 
 let create_el = html_tags.create_el;
 let get_el = html_tags.get_el;
