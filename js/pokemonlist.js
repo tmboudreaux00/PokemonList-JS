@@ -17,118 +17,147 @@
 let div = () => { return document.createElement('div'); }
 
 
-let default_sort, get_pokemon, get_pokemon_type, pokedex, pokemon, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_id_num, pokemon_list_values, 
-    pokemon_name, pokemon_types, sort_pokemon, type_1, type_2;
+let default_sort, get_pokemon, get_pokemon_type, page_view, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_id_num, pokemon_info, pokemon_list, 
+    pokemon_name, pokemon_types, sort_option, sort_pokemon,type;
 
-pokemon_array = [];
-default_sort;
 pokedex = document.getElementById('pokedex');
-let pokedex_copy = pokedex;    
-console.log(pokemon_array);
+pokemon_array = [];
+default_sort = 'reverse_id';
 let api_limit = 10;
 let api_offset = 0;
 
-let pokelist = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon/?limit=${api_limit}&offset=${api_offset}`)
-    .then(pokemon_list => pokemon_list.json())
-    .then(pokemon_list_data => {
-        pokemon_list_values = Object.values(pokemon_list_data.results);
-        
-        //CLEAR #POKEDEX INNER HTML
-       //(function() { return pokedex.innerHTML = ''; })(); 
-        get_pokemon = () => {
-            for (let i = 0; i < api_limit; i++) {
-            
-                fetch(pokemon_list_values[i].url)
-                .then(pokemon_card => pokemon_card.json())
-                .then(pokemon_card_list_data => {
-                    
-                    pokemon_card_data = pokemon_card_list_data;
-                
-                    pokemon = div();
-                    pokemon.className = `pokemonCard`;
-
-                    pokemon_card_photo = div();
-                    pokemon_card_photo_url = pokemon_card_data.sprites.front_default;
-                    pokemon_card_photo.innerHTML = `<img src="${pokemon_card_photo_url}" alt="photo of ${pokemon_list_values[i].name}" />`;
-
-                    pokemon_id = div();
-                    pokemon_id_num = () => {
-                        let id = pokemon_card_data.id;
-                        if (id < 10)
-                        id = `00${id}`;
-                        else if (id >= 10 && id < 100)
-                        id = `0${id}`;
-                        return id;
-                    }
-                    
-                    pokemon_id.id = pokemon_id_num()
-                    pokemon_id.className = 'pokemonIdDisplay'
-                    pokemon_id.innerText = pokemon_id.id;
-                    pokemon.id = 'pokemon' + pokemon_id.id;
-                    pokemon_name = div();
-                    pokemon_name.id = 'pokemonName';
-                    pokemon_name.innerText = `${pokemon_list_values[i].name}`;
-
-                    pokemon_types = div();
-                    pokemon_types.id = `pokemon${pokemon_id.id}Types`;
-                    type_1 = div();
-                    type_2 = div();
-                    get_pokemon_type = () => {
-                        let type_1_name, type_1_url, type_2_name, type_2_url;
-                        type_1_name = pokemon_card_data.types[0].type.name;
-                        type_1_url = pokemon_card_data.types[0].type.url;
-                        type_1.innerText = type_1_name;
-        
-                        if (pokemon_card_data.types.length > 1){
-                            type_2_name = pokemon_card_data.types[1].type.name;
-                            type_2_url = pokemon_card_data.types[1].type.url;  
-                            type_2.innerText = type_2_name;
-                        }
-                    }
-                    get_pokemon_type();
-
-                    pokemon_types.append(
-                        type_1,
-                        type_2
-                    )
-                   
-                    pokemon.append(
-                        pokemon_card_photo,
-                        pokemon_id,
-                        pokemon_name,
-                        pokemon_types
-                    )
-                    
-                })
-                 
-            }   //endfor 
-            
-            return pokemon;
-            // pokemon_array.sort((a, b) => {
-            //     a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
-            //     b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
-            //     return a < b ? - 1 : a > b ? + 1 : 0;
-            // });
-            // default_sort = pokemon_array;
-                    
-            // default_sort.filter(element => {
-            //     return element !== undefined;
-            // })
-
-            // pokemon_array = default_sort;
-            
-            //pokedex_copy.append()
-        } 
-        pokemon = get_pokemon();           
-        pokemon_array.push(pokemon);
-        console.log(pokemon_array);
-    })  
+pokemon_list = () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=${api_limit}&offset=${api_offset}`)
+    .then(response => response.json())
+    .then(pokemon_list => {
+        pokemon_list.results.forEach(pokemon => {
+            throw_pokeball(pokemon);
+        })
+    })
 }
-(function() { return pokedex.innerHTML = ''; })();
+   
+let throw_pokeball = (pokemon) => {
 
-pokelist()
+    let pokemon_url = pokemon.url;
+    fetch(pokemon_url)
+    .then(response => response.json())
+    .then(pokemon_card_data => {
 
+    open_pokeball(pokemon_card_data);
+
+    })
+}
+
+let open_pokeball = (pokemon_data) => {
+                    
+    pokemon_info = div();
+    pokemon_info.className = `pokemonCard`;
+
+    pokemon_card_photo = div();
+    pokemon_card_photo_url = pokemon_data.sprites.front_default;
+    pokemon_card_photo.innerHTML = `<img src="${pokemon_card_photo_url}" alt="photo of ${pokemon_data.name}" />`;
+
+    pokemon_id = div();
+    pokemon_id_num = () => {
+        let id = pokemon_data.id;
+        if (id < 10)
+        id = `00${id}`;
+        else if (id >= 10 && id < 100)
+        id = `0${id}`;
+        return id;
+    }
+
+    pokemon_id.id = pokemon_id_num()
+    pokemon_id.className = 'pokemonIdDisplay'
+    pokemon_id.innerText = pokemon_id.id;
+    pokemon_info.id = 'pokemon' + pokemon_id.id;
+    pokemon_name = div();
+    pokemon_name.id = 'pokemonName';
+    pokemon_name.innerText = `${pokemon_data.name}`;
+
+    pokemon_types = div();
+    pokemon_types.id = `pokemon${pokemon_id.id}Types`;
+
+    get_pokemon_type(pokemon_data.types, pokemon_types);
+
+    pokemon_info.append(
+        pokemon_card_photo,
+        pokemon_id,
+        pokemon_name,
+        pokemon_types
+    )  
+    
+    pokemon_array.push(pokemon_info);
+    sorter(pokemon_array);
+}
+
+get_pokemon_type = (types, pokemon_types) => {
+    types.forEach( t => {
+        type = div();
+        type.innerText = t ['type']['name'];
+        pokemon_types.append(type);
+    })
+}
+let sort_method;
+let sorter = (pokemon_array) => {
+    let sort_option = default_sort;
+    let sort_id, sort_id_reverse;
+    if (sort_option === 'id') {
+
+        sort_id = pokemon_array.sort((a, b) => {
+                a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
+                b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
+                return a < b ? - 1 : a > b ? + 1 : 0;
+            });
+        
+        sort_method = sort_id;
+    }
+    else if (sort_option === 'reverse_id')
+
+        sort_id_reverse = pokemon_array.sort((a, b) => {
+            a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
+            b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
+            return a < b ? - 1 : a > b ? + 1 : 0;
+        }).reverse();
+
+        sort_method = sort_id_reverse;
+    
+
+
+
+    append_pokemon(sort_method);
+}
+
+let append_pokemon = (sort_option) => {
+    sort_option.forEach(p => {
+        pokedex.appendChild(p);
+    }) 
+}
+
+
+
+// pokemon_array.sort((a, b) => {
+    //     a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
+//     b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
+//     return a < b ? - 1 : a > b ? + 1 : 0;
+// });
+// default_sort = pokemon_array;
+
+// default_sort.filter(element => {
+    //     return element !== undefined;
+    // })
+    
+    // pokemon_array = default_sort;
+    
+    //pokedex_copy.append()
+    
+//CLEAR #POKEDEX INNER HTML AND RENDER VIEW
+page_view = () => { 
+    pokedex.innerHTML = '';
+    pokemon_list();
+    console.log(pokedex);
+}; 
+page_view();
 /** 
  * Get the list of Pokemon from the pokemon api ​https://pokeapi.co/
  * Should have a screen that lists pokemon in a Grid Style
