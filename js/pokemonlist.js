@@ -15,7 +15,7 @@
 
 
 let div = () => { return document.createElement('div'); }
-
+let list ;
 
 let default_sort, get_pokemon, get_pokemon_type, page_view, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_id_num, pokemon_info, pokemon_list, 
     pokemon_name, pokemon_types, sort_option, sort_pokemon,type;
@@ -23,6 +23,8 @@ let default_sort, get_pokemon, get_pokemon_type, page_view, pokedex, pokemon_arr
 pokedex = document.getElementById('pokedex');
 pokemon_array = [];
 default_sort = 'reverse_id';
+let numberPerPageOption = 10; //USER OPTION
+
 let api_limit = 10;
 let api_offset = 0;
 
@@ -98,64 +100,106 @@ get_pokemon_type = (types, pokemon_types) => {
         pokemon_types.append(type);
     })
 }
+
 let sort_method;
 let sorter = (pokemon_array) => {
     let sort_option = default_sort;
     let sort_id, sort_id_reverse;
-    if (sort_option === 'id') {
 
-        sort_id = pokemon_array.sort((a, b) => {
+    switch (true) {
+        case (sort_option === 'id'):
+
+            sort_id = pokemon_array.sort((a, b) => {
+                    a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
+                    b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
+                    return a < b ? - 1 : a > b ? + 1 : 0;
+            });
+            sort_method = sort_id;
+        
+        case (sort_option === 'reverse_id'):
+
+            sort_id_reverse = pokemon_array.sort((a, b) => {
                 a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
                 b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
                 return a < b ? - 1 : a > b ? + 1 : 0;
-            });
-        
-        sort_method = sort_id;
-    }
-    else if (sort_option === 'reverse_id')
-
-        sort_id_reverse = pokemon_array.sort((a, b) => {
-            a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
-            b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
-            return a < b ? - 1 : a > b ? + 1 : 0;
         }).reverse();
-
         sort_method = sort_id_reverse;
+    }   
     
-
-
-
+    numberOfPages = getNumberOfPages(sort_method);
+    loadList(sort_method);
     append_pokemon(sort_method);
 }
 
-let append_pokemon = (sort_option) => {
-    sort_option.forEach(p => {
+let append_pokemon = (sort_method) => {
+    sort_method.forEach(p => {
         pokedex.appendChild(p);
     }) 
 }
 
+let pageList = new Array();
+
+let currentPage = 1;
+let numberPerPage = numberPerPageOption;//USER SELECTION = numberPerPageOption
+let numberOfPages = 1;
+
+let next_button, previous_button, first_button, last_button;
+
+let getNumberOfPages = (list) => {
+    return Math.ceil(list.length / numberPerPage);
+}
+
+let nextPage = () => {
+    currentPage += 1;
+    loadList();
+}
+
+let previousPage = () => {
+    currentPage -= 1;
+    loadList();
+}
+
+let firstPage = () => {
+    currentPage = 1;
+    loadList();
+}
+
+let lastPage = () => {
+    currentPage = numberOfPages;
+    loadList();
+}
+
+let loadList = (sorted_list) => {
+    var begin = ((currentPage - 1) * numberPerPage);
+    var end = begin + numberPerPage;
+    pageList = sorted_list.slice(begin, end);
+    check();
+}
+
+// let drawList = () => {//delete
+//     for (let r = 0; r < pageList.length; r++) {
+//         document.getElementById("list").innerHTML += pageList[r] + "<br/>";
+//     }
+// }
+
+let check = () => {
+    document.getElementById("nextPage").disabled = currentPage == numberOfPages ? true : false;
+    document.getElementById("previousPage").disabled = currentPage == 1 ? true : false;
+    document.getElementById("firstPage").disabled = currentPage == 1 ? true : false;
+    document.getElementById("lastPage").disabled = currentPage == numberOfPages ? true : false;
+}
+
+// let load = () => {
+//     loadList();
+// }
 
 
-// pokemon_array.sort((a, b) => {
-    //     a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
-//     b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
-//     return a < b ? - 1 : a > b ? + 1 : 0;
-// });
-// default_sort = pokemon_array;
 
-// default_sort.filter(element => {
-    //     return element !== undefined;
-    // })
-    
-    // pokemon_array = default_sort;
-    
-    //pokedex_copy.append()
-    
 //CLEAR #POKEDEX INNER HTML AND RENDER VIEW
 page_view = () => { 
     pokedex.innerHTML = '';
     pokemon_list();
-    console.log(pokedex);
+    // load();
 }; 
 page_view();
 /** 
