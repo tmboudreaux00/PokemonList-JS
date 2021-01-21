@@ -14,7 +14,7 @@
 
 //VARIABLE INIT
 let api_limit, api_offset, current_page, first_button, default_limit, default_offset, default_sort, get_10, get_20, get_50, get_100, get_all, last_button, next_button, number_of_pages, number_per_page, 
-    number_per_page_option, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
+    limit, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
     pokemon_name, pokemon_types, sort_by_id, sort_method, sort_option, type;
     
     
@@ -56,19 +56,19 @@ pokemon_list = (api_limit, api_offset, reverse_sort) => {
     })
 }
    
-throw_pokeball = (pokemon, reverse_sort) => {
+throw_pokeball = (pokemon, reverse_sort, api_limit) => {
 
     let pokemon_url = pokemon.url;
     fetch(pokemon_url)
     .then(response => response.json())
     .then(pokemon_card_data => {
 
-    open_pokeball(pokemon_card_data, reverse_sort);
+    open_pokeball(pokemon_card_data, reverse_sort, limit);
 
     })
 }
 
-open_pokeball = (pokemon_data, reverse_sort) => {
+open_pokeball = (pokemon_data, reverse_sort, limit) => {
                     
     pokemon_info = div();
     pokemon_info.className = `pokemonCard`;
@@ -107,8 +107,8 @@ open_pokeball = (pokemon_data, reverse_sort) => {
         pokemon_types
     )  
     pokemon_array.push(pokemon_info);
-    sorter(pokemon_array, reverse_sort);
-    get_number_of_pages(number_per_page_option);
+    sorter(pokemon_array, reverse_sort, limit);
+    get_number_of_pages(limit);
 }
 
 get_pokemon_type = (types, pokemon_types) => {
@@ -119,7 +119,7 @@ get_pokemon_type = (types, pokemon_types) => {
     })
 }
 
-sorter = (pokemon_array, reverse_sort) => {
+sorter = (pokemon_array, reverse_sort, limit) => {
     let sort_id;
     switch (true) {
         case (sort_option === sort_by_id):
@@ -138,43 +138,21 @@ sorter = (pokemon_array, reverse_sort) => {
                 break;
             }
     }
-    append_pokemon(sort_method)
+    append_pokemon(sort_method, limit)
     check(); 
 }
 
-append_pokemon = (pokemon_array) => {
-    let row = div();
-    row.className = 'pokemonRow'
-    
-
-    // 10 / 5
-    // 20 / 5
-    // 50 / 5
-    // 100 / 5
-    // ceiling(151 / 5)
-
+append_pokemon = (pokemon_array, limit) => {
+    let num_rows = (Math.ceil(limit / 5));
+    let row;
     pokemon_array.forEach((p, i) => {
-        switch (true) {
-            case (i === 0):
-                pokedex.append(row);
-                row.id = `row${(number_per_page_option / 5) - (number_per_page_option / 5) + i + 1}`;
-                document.getElementById(`row${i + 1}`)
-            case ((i + 1) % 5 === 0 && i != 0):
-                pokedex.append(row);
-                row.id = `row${(number_per_page_option / 5) - (number_per_page_option / 5) + i + 1}`;
-                pokedex.append(p);
-            case ((i - 1) === get_all - 1):
-                pokedex.append(p)  
-            default:
-                pokedex.append(p);
+        for (let j = 1; j < (num_rows + 1); j++){
+            row = document.getElementById(`row${j}`);
+            row.className = 'd-flex';
+            if (Math.ceil((i + 1) / 5) === j) {
+                row.append(p)
+            }
         }
-        // if ((index + 1) % 5 === 0) {
-        //     pokedex.append('<div class="pokedexRow">' + p + '</div>');
-        // } else if ((index - 1) === get_all) {
-        //     pokedex.append(p + '</div>'); 
-        // } else {
-        //     pokedex.append(p);
-        // }
     }) 
 }
 
@@ -192,75 +170,84 @@ check = () => {
 //CLEAR #POKEDEX INNER HTML AND RENDER VIEW
 page_view = (limit, offset, reverse_sort) => {
     pokedex.innerHTML = '';
-    pokedex.append()
-    pokemon_list(limit, offset, reverse_sort);
+    let row;
+    let num_rows = (Math.ceil(limit / 5));
+
+    for (let i = 0; i < num_rows; i++) {
+        row = div();
+        row.className = 'pokemonRow';
+        row.id = `row${i + 1}`;
+        pokedex.append(row);
+    }
+
+    pokemon_list(limit, offset, reverse_sort, num_rows);
 }; 
 
-set_limit =(number_per_page_option, offset, reverse_sort) => {
+set_limit =(limit, offset, reverse_sort) => {
 
     switch(true) {
         case (reverse_sort === true):
-            case (number_per_page_option === get_10):
+            case (limit === get_10):
                 api_limit = get_all - get_10;
                 api_offset = api_limit - get_10;
                 break;
-            case (number_per_page_option === get_20):
+            case (limit === get_20):
                 api_limit = get_all - get_20;
                 api_offset = api_limit - get_20;
                 break;
-            case (number_per_page_option === get_50):
+            case (limit === get_50):
                 api_limit = get_all - get_50;
                 api_offset = api_limit - get_50;
                 break;
-            case (number_per_page_option === get_100):
+            case (limit === get_100):
                 api_limit = get_all - get_100;
                 api_offset = api_limit - get_100;
                 break;
-            case(number_per_page_option === get_all):
+            case(limit === get_all):
                 api_limit = get_all;
                 api_offset = 0;
                 break;
 
         case (reverse_sort === false):
-            case (number_per_page_option === get_10):
+            case (limit === get_10):
                 api_limit = get_10;
                 api_offset = 0;
                 break;
-            case (number_per_page_option === get_20):
+            case (limit === get_20):
                 api_limit = get_20;
                 break;
-            case (number_per_page_option === get_50):
+            case (limit === get_50):
                 api_limit = get_50;
                 break;
-            case (number_per_page_option === get_100):
+            case (limit === get_100):
                 api_limit = get_100;
                 break;
-            case (number_per_page_option === get_all):
+            case (limit === get_all):
                 api_limit = get_all;
                 break;
     }
-    page_view(number_per_page_option, offset, reverse_sort)
+    page_view(limit, offset, reverse_sort)
 }
 
 
-get_pokemon = (number_per_page_option, reverse) => {
+get_pokemon = (limit, reverse) => {
     let offset = 0;
     let reverse_offset = get_all - number_per_page;
 
     if (reverse === true){
-        set_limit(number_per_page_option, reverse_offset, true);
+        set_limit(limit, reverse_offset, true);
     } else {
-        set_limit(number_per_page_option, offset, false);
+        set_limit(limit, offset, false);
     }
 }
 
 get_form = (e) => {
     e.preventDefault();
     let form = document.forms['getPokemonForm'];
-    number_per_page_option = document.forms['getPokemonForm']['pokemonPerPage'].value;
+    limit = document.forms['getPokemonForm']['pokemonPerPage'].value;
     let reverse = document.forms['getPokemonForm']['checkbox'].checked;
     pokemon_array = new Array();
-    get_pokemon(number_per_page_option, reverse);
+    get_pokemon(limit, reverse);
 }
 load_button.addEventListener('click', get_form);
 
