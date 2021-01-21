@@ -5,65 +5,70 @@
 
 // let create_el = html_tags.create_el;
 // let get_el = html_tags.get_el;
-//implement views 10, 25, 50, 100, All
+
 //filter results
 //search bar
-//x = results view selection (e.g. 10, 25, 50) 
-//y = results page view
+
 //onSelection => y = x
 //onClick => y += y
 
+//VARIABLE INIT
+let api_limit, api_offset, current_page, first_button, default_limit, default_offset, default_sort, get_10, get_20, get_50, get_100, get_all, last_button, next_button, number_of_pages, number_per_page, 
+    number_per_page_option, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
+    pokemon_name, pokemon_types, sort_by_id, sort_method, sort_option, type;
+    
+    
+//FUNCTION INIT
+let append_pokemon, check, div, first_page, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, get_user_selection, last_page, limiter, load_button, next_page, open_pokeball, page_view, 
+    pokemon_id_num, pokemon_list, previous_page, set_limit, sort_pokemon, sorter, throw_pokeball;
+ 
+div = () => { return document.createElement('div'); }
+load_button = document.querySelector('#loadButton');
+pokedex = document.querySelector('#pokedex');
 
-let div = () => { return document.createElement('div'); }
-let list ;
-let pageList = new Array();
-let numberPerPageOption = 10; //USER OPTION
-let currentPage = 1;
-let numberPerPage = numberPerPageOption;//USER SELECTION = numberPerPageOption
-let numberOfPages = 1;
+sort_by_id = 'id';
 
-let api_limit, first_button, default_sort, get_10, get_20, get_50, get_100, get_all, get_pokemon, get_pokemon_type, last_button,
-    next_button, previous_button, page_view, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url,
-    pokemon_id, pokemon_id_num, pokemon_info, pokemon_list, pokemon_name, pokemon_types, sort_option, sort_pokemon, type;
+default_sort = sort_by_id;
+sort_option = sort_by_id; //USER OPTION --- ONLY ID AVAILABLE --- FUTURE SORT A - Z?
 
-pokedex = document.getElementById('pokedex');
-pokemon_array = new Array();
 
-default_sort = 'reverse_id';
-
-api_limit= 100;
 get_10 = 10;
 get_20 = 20;
 get_50 = 50;
 get_100 = 100;
-get_all = api_limit;
+get_all = 151;
+
+current_page = 1;
+
+/** CONSTRUCTION ZONE */
 
 
-let api_offset = 0;
+/** END CONSTRUCTION ZONE */
 
-pokemon_list = () => {
+
+pokemon_list = (api_limit, api_offset, reverse_sort) => {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=${api_limit}&offset=${api_offset}`)
     .then(response => response.json())
     .then(pokemon_list => {
         pokemon_list.results.forEach(pokemon => {
-            throw_pokeball(pokemon);
+            throw_pokeball(pokemon, reverse_sort);
         })
     })
 }
    
-let throw_pokeball = (pokemon) => {
+throw_pokeball = (pokemon, reverse_sort) => {
 
     let pokemon_url = pokemon.url;
     fetch(pokemon_url)
     .then(response => response.json())
     .then(pokemon_card_data => {
 
-    open_pokeball(pokemon_card_data);
+    open_pokeball(pokemon_card_data, reverse_sort);
 
     })
 }
 
-let open_pokeball = (pokemon_data) => {
+open_pokeball = (pokemon_data, reverse_sort) => {
                     
     pokemon_info = div();
     pokemon_info.className = `pokemonCard`;
@@ -102,7 +107,8 @@ let open_pokeball = (pokemon_data) => {
         pokemon_types
     )  
     pokemon_array.push(pokemon_info);
-    sorter(pokemon_array);
+    sorter(pokemon_array, reverse_sort);
+    get_number_of_pages(number_per_page_option);
 }
 
 get_pokemon_type = (types, pokemon_types) => {
@@ -113,118 +119,177 @@ get_pokemon_type = (types, pokemon_types) => {
     })
 }
 
-
-let sort_method;
-let sorter = (pokemon_array) => {
-    let sort_option = default_sort;
-    let sort_id, sort_id_reverse;
-
+sorter = (pokemon_array, reverse_sort) => {
+    let sort_id;
     switch (true) {
-        case (sort_option === 'id'):
-
+        case (sort_option === sort_by_id):
             sort_id = pokemon_array.sort((a, b) => {
-                    a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
-                    b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
-                    return a < b ? - 1 : a > b ? + 1 : 0;
-            });
-            sort_method = sort_id;
-        
-        case (sort_option === 'reverse_id'):
-
-            sort_id_reverse = pokemon_array.sort((a, b) => {
                 a = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
                 b = Number(b.getElementsByClassName('pokemonIdDisplay')[0].id);
+                
                 return a < b ? - 1 : a > b ? + 1 : 0;
-        }).reverse();
-        sort_method = sort_id_reverse;
-    }   
-    
-    numberOfPages = getNumberOfPages(sort_method);
-    check();
-    limiter(sort_method);
-}
-
-let limiter = (sort_method) => {
-    //if opt = get_50... opt = limit/offset
-    // if currentPage === 1
-
-    // else if numberOfPages
-    // else
-    pokemon_array = new Array();
-    let pid;
-    sort_method.forEach(p => { 
-        pid = Number(p.id.split('pokemon')[1]);
-        if (pid > 0 && pid <= 10) {
-            pokemon_array.push(p);
-        } else {
-            console.log('Out of range');
-        }
-    })
-    append_pokemon(pokemon_array);
-
-    //      pid = Number(a.getElementsByClassName('pokemonIdDisplay')[0].id);
-
-    
-}
-function *filter(array, condition, maxSize) {
-    if (!maxSize || maxSize > array.length) {
-        maxSize = array.length;
+            });
+            
+            if (reverse_sort === true) {
+                sort_method = sort_id.reverse();
+                break;
+            } else { 
+                sort_method = sort_id;
+                break;
+            }
     }
-    let count = 0;
-    let i = 0;
-    while ( count< maxSize && i < array.length ) {
-      if (condition(array[i])) {
-        yield array[i];
-        count++;
-        }
-        i++;
-    }
+    append_pokemon(sort_method)
+    check(); 
 }
 
-let append_pokemon = (limited_pokemon_array) => {
-    limited_pokemon_array.forEach(p => {
-        pokedex.append(p);
+append_pokemon = (pokemon_array) => {
+    let row = div();
+    row.className = 'pokemonRow'
+    
+
+    // 10 / 5
+    // 20 / 5
+    // 50 / 5
+    // 100 / 5
+    // ceiling(151 / 5)
+
+    pokemon_array.forEach((p, i) => {
+        switch (true) {
+            case (i === 0):
+                pokedex.append(row);
+                row.id = `row${(number_per_page_option / 5) - (number_per_page_option / 5) + i + 1}`;
+                document.getElementById(`row${i + 1}`)
+            case ((i + 1) % 5 === 0 && i != 0):
+                pokedex.append(row);
+                row.id = `row${(number_per_page_option / 5) - (number_per_page_option / 5) + i + 1}`;
+                pokedex.append(p);
+            case ((i - 1) === get_all - 1):
+                pokedex.append(p)  
+            default:
+                pokedex.append(p);
+        }
+        // if ((index + 1) % 5 === 0) {
+        //     pokedex.append('<div class="pokedexRow">' + p + '</div>');
+        // } else if ((index - 1) === get_all) {
+        //     pokedex.append(p + '</div>'); 
+        // } else {
+        //     pokedex.append(p);
+        // }
     }) 
 }
 
-let getNumberOfPages = (list) => {
-    return Math.ceil(list.length / numberPerPage);
+get_number_of_pages = (number_per_page) => {
+   return Math.ceil(get_all / number_per_page);
 }
 
-let nextPage = () => {
-    currentPage += 1;
-    page_view();
-}
-
-let previousPage = () => {
-    currentPage -= 1;
-    page_view();
-}
-
-let firstPage = () => {
-    currentPage = 1;
-    page_view();
-}
-
-let lastPage = () => {
-    console.log(numberOfPages);
-    currentPage = numberOfPages;
-    page_view();
-}
-
-let check = () => {
-    document.getElementById("nextPage").disabled = currentPage == numberOfPages ? true : false;
-    document.getElementById("previousPage").disabled = currentPage == 1 ? true : false;
-    document.getElementById("firstPage").disabled = currentPage == 1 ? true : false;
-    document.getElementById("lastPage").disabled = currentPage == numberOfPages ? true : false;
+check = () => {
+    document.getElementById("nextPage").disabled = current_page == number_of_pages ? true : false;
+    document.getElementById("previousPage").disabled = current_page == 1 ? true : false;
+    document.getElementById("firstPage").disabled = current_page == 1 ? true : false;
+    document.getElementById("lastPage").disabled = current_page == number_of_pages ? true : false;
 }
 
 //CLEAR #POKEDEX INNER HTML AND RENDER VIEW
-page_view = () => { 
+page_view = (limit, offset, reverse_sort) => {
     pokedex.innerHTML = '';
-    pokemon_list();
+    pokedex.append()
+    pokemon_list(limit, offset, reverse_sort);
 }; 
-page_view()
+
+set_limit =(number_per_page_option, offset, reverse_sort) => {
+
+    switch(true) {
+        case (reverse_sort === true):
+            case (number_per_page_option === get_10):
+                api_limit = get_all - get_10;
+                api_offset = api_limit - get_10;
+                break;
+            case (number_per_page_option === get_20):
+                api_limit = get_all - get_20;
+                api_offset = api_limit - get_20;
+                break;
+            case (number_per_page_option === get_50):
+                api_limit = get_all - get_50;
+                api_offset = api_limit - get_50;
+                break;
+            case (number_per_page_option === get_100):
+                api_limit = get_all - get_100;
+                api_offset = api_limit - get_100;
+                break;
+            case(number_per_page_option === get_all):
+                api_limit = get_all;
+                api_offset = 0;
+                break;
+
+        case (reverse_sort === false):
+            case (number_per_page_option === get_10):
+                api_limit = get_10;
+                api_offset = 0;
+                break;
+            case (number_per_page_option === get_20):
+                api_limit = get_20;
+                break;
+            case (number_per_page_option === get_50):
+                api_limit = get_50;
+                break;
+            case (number_per_page_option === get_100):
+                api_limit = get_100;
+                break;
+            case (number_per_page_option === get_all):
+                api_limit = get_all;
+                break;
+    }
+    page_view(number_per_page_option, offset, reverse_sort)
+}
+
+
+get_pokemon = (number_per_page_option, reverse) => {
+    let offset = 0;
+    let reverse_offset = get_all - number_per_page;
+
+    if (reverse === true){
+        set_limit(number_per_page_option, reverse_offset, true);
+    } else {
+        set_limit(number_per_page_option, offset, false);
+    }
+}
+
+get_form = (e) => {
+    e.preventDefault();
+    let form = document.forms['getPokemonForm'];
+    number_per_page_option = document.forms['getPokemonForm']['pokemonPerPage'].value;
+    let reverse = document.forms['getPokemonForm']['checkbox'].checked;
+    pokemon_array = new Array();
+    get_pokemon(number_per_page_option, reverse);
+}
+load_button.addEventListener('click', get_form);
+
+
+
+next_page = () => {
+    current_page += 1;
+    api_limit = change;
+    api_offset = change;
+    get_pokemon();
+}
+
+previous_page = () => {
+    //GET FORM DATA
+    current_page -= 1;
+    page_view();
+}
+
+first_page = () => {
+    current_page = 1;
+    page_view();
+}
+
+last_page = () => {
+    console.log(number_of_pages);
+    current_page = number_of_pages;
+    page_view();
+}
+
 /** 
  * Get the list of Pokemon from the pokemon api ​https://pokeapi.co/
  * Should have a screen that lists pokemon in a Grid Style

@@ -12,23 +12,61 @@
     <div>
     <h1>Pokemon List</h1>
     </div>
+    <div class="pokemon-form-div">
 
-    <div class="" id="pokedex">
+        <div class="form-for-pokemon">
+            <form name="getPokemonForm">
+                <div>
+                    <label for="pokemonPerPage">Per Page</label>
+                </div>
+                
+                <div>
+                    <select id="pokemonPerPage">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="151">All</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <div>
+                        <label for="checkbox">Reverse?</label>
+                    </div>
+                    <div>
+                        <input id="checkbox" name="checkbox" type="checkbox" />
+                    </div>
+                </div>
+                    
+                <div>
+                    <input id="loadButton" type="submit" value="Load" />
+                </div>
+            </form>
 
-        <div class="oops-card">
-            Oops! Something went wrong. There was a fetch error!
         </div>
 
-    </div>
-    <div class="" id="">
-        <div id="pages">
-            <input type="button" id="firstPage" onclick="firstPage()" value="First" />
-            <input type="button" id="nextPage" onclick="nextPage()" value="Next" />
-            <input type="button" id="previousPage" onclick="previousPage()" value="Previous" />
-            <input type="button" id="lastPage" onclick="lastPage()" value="Last" />
+        <div class="" id="pokedex">
+
+            <div class="oops-card d-none">
+                Oops! Something went wrong. There was a fetch error!
+            </div>
+
+            <div class="loading-gif">
+                Loading Gif...
+            </div>
+
+        </div>
+
+        <div class="" id="">
+            <div id="pages">
+                <input type="button" id="firstPage" onclick="first_page()" value="First" />
+                <input type="button" id="nextPage" onclick="next_page()" value="Next" />
+                <input type="button" id="previousPage" onclick="previous_page()" value="Previous" />
+                <input type="button" id="lastPage" onclick="last_page()" value="Last" />
+            </div>
         </div>
     </div>
-
 
 
     <div>
