@@ -201,52 +201,47 @@ set_limit = (limit, reverse, current_page) => {
     let new_limit = limit;
     let new_offset = offset;
 
-    /** WORK IN PROGRESS FOR REVERSE VIEWS, RESET DATA IF CHANGING LIMIT  **/
-
-    switch(true) {
-        case (current_page == number_of_pages && limit == get_10 || current_page == number_of_pages && limit == get_50):
-            new_limit = 1;
-            new_offset = 150;
-            break;
-        case (current_page == number_of_pages && limit == get_20):
-            new_limit = 11;
-            new_offset = 140;
-            break;
-        case (current_page == number_of_pages && limit == get_100):
-            new_limit = get_all - limit;
-            new_offset = get_100;
-            break;
-        default:  
-            case (current_page < number_of_pages && current_page != 1):
-                new_offset = (current_page - 1) * limit;
-                break; 
-
-    }
-
-
-    switch(reverse) { //check to see if removing case(reverse===true) and replacing switch(true) with switch(reverse)
-        case (current_page == 1):
-            new_offset = get_all - limit;
-            break;
-        case (current_page == number_of_pages && limit == get_10 || current_page == number_of_pages && limit == get_50):
-            new_limit = 1;
-            new_offset = 0;
-            break;
-        case (current_page == number_of_pages && limit == get_20):
-            new_limit = 11;
-            new_offset = 0;
-            break
-        case (current_page == number_of_pages && limit == get_100):
-            new_limit = get_all - limit;
-            new_offset = 0;
-            break;
-        default:
-            case (current_page < number_of_pages && current_page != 1):
-                new_offset = get_all - (current_page * limit);
-                break; 
-
-        // case (limit === get_all): //change to default if not other case
-        //     break;
+    if (reverse === false) {
+        switch(true) {
+            case (current_page == number_of_pages && limit == get_10 || current_page == number_of_pages && limit == get_50):
+                new_limit = 1;
+                new_offset = 150;
+                break;
+            case (current_page == number_of_pages && limit == get_20):
+                new_limit = 11;
+                new_offset = 140;
+                break;
+            case (current_page == number_of_pages && limit == get_100):
+                new_limit = get_all - limit;
+                new_offset = get_100;
+                break;
+            default:  
+                case (current_page < number_of_pages && current_page != 1):
+                    new_offset = (current_page - 1) * limit;
+                    break; 
+        }
+    } else {
+        switch(true) {
+            case (current_page == 1):
+                new_offset = get_all - limit;
+                break;
+            case (current_page == number_of_pages && limit == get_10 || current_page == number_of_pages && limit == get_50):
+                new_limit = 1;
+                new_offset = 0;
+                break;
+            case (current_page == number_of_pages && limit == get_20):
+                new_limit = 11;
+                new_offset = 0;
+                break
+            case (current_page == number_of_pages && limit == get_100):
+                new_limit = get_all - limit;
+                new_offset = 0;
+                break;
+            default:
+                case (current_page < number_of_pages && current_page != 1):
+                    new_offset = get_all - (current_page * limit);
+                    break; 
+        }
     }
     limit = new_limit;
     offset = new_offset;
