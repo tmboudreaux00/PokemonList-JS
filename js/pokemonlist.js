@@ -228,21 +228,21 @@ set_limit = (limit, reverse, current_page) => {
         case (current_page == 1):
             new_offset = get_all - limit;
             break;
-        case (current_page == number_of_pages && limit == get_10):
-            
-            gitbreak;
+        case (current_page == number_of_pages && limit == get_10 || current_page == number_of_pages && limit == get_50):
+            new_limit = 1;
+            new_offset = 0;
+            break;
         case (current_page == number_of_pages && limit == get_20):
-            new_offset = get_all - limit;
-            break;
-        case (current_page == number_of_pages && limit == get_50):
-            new_offset = get_all - limit;
-            break;
+            new_limit = 11;
+            new_offset = 0;
+            break
         case (current_page == number_of_pages && limit == get_100):
-            new_offset = get_all - limit;
+            new_limit = get_all - limit;
+            new_offset = 0;
             break;
         default:
             case (current_page < number_of_pages && current_page != 1):
-                new_offset = (current_page - 1) * limit;
+                new_offset = get_all - (current_page * limit);
                 break; 
 
         // case (limit === get_all): //change to default if not other case
