@@ -13,7 +13,7 @@
 //onClick => y += y
 
 //VARIABLE INIT
-let current_page, first_button, default_limit, default_offset, default_sort, get_10, get_20, get_50, get_100, get_all, get_limit, get_reverse, last_button, limit, next_button, number_of_pages, number_per_page, 
+let current_page, default_limit, default_offset, default_sort, first_button, get_10, get_20, get_50, get_100, get_all, get_limit, get_reverse, i, j, last_button, limit, next_button, number_of_pages, number_per_page, 
     offset, page, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
     pokemon_name, pokemon_types, reverse, reverse_record, sort_by_id, sort_method, sort_option, type;
     
@@ -53,11 +53,47 @@ let limit_record;
 default_sort = sort_by_id;
 sort_option = sort_by_id; //USER OPTION --- ONLY ID AVAILABLE --- FUTURE SORT A - Z?
 
+let search_field = document.querySelector('#searchField');
+//input = input.toLowerCase();
+
 let test_func = () => {
-    console.log(current_page);
+    console.log(`${limit} ${offset} ${reverse}`);
 }
 
+let init_search = () => {
+    pokemon_array = new Array();
 
+    limit = 151;
+    offset = 0;
+    reverse = false;
+    test_func(limit, offset, reverse);
+}
+//'searchbar'.addEventLister('click', init_search); //if search.val != null/undefined, ignore
+
+// class pokemoncard, id pokemon001 - pokemon151
+// class = pokemonIdDisplay, id = 001 - 151
+// class pokemonname, id pokemon.name
+// class types
+let class_pokemonCard, class_pokemonName, class_pokemonTypes, id_pokemon, id_pokemonName;
+
+
+class_pokemonCard = document.querySelectorAll('#pokemonCard');
+//id_pokemon = document.querySelector(`.pokemon${i}`);
+class_pokemonName = document.querySelectorAll('#pokemonName');
+//id_pokemonName = document.querySelector(`.${p.name}`);
+class_pokemonTypes = document.querySelector('#pokemonTypes'); 
+
+let search_array;
+search_array = new Array();
+let search_pokemon = () => {
+    search_array = pokemon_array;
+    pokemon_array = new Array();
+    // for (let i = 0; i < get_all; i++) {
+    //     search_array.forEach(p => {
+            
+    //     });
+    // }
+}
 
 /** END CONSTRUCTION ZONE */
 
@@ -89,6 +125,7 @@ open_pokeball = (pokemon_data, reverse, limit) => {
     pokemon_info.className = `pokemonCard`;
 
     pokemon_card_photo = div();
+    pokemon_card_photo.className = 'pokemonPhoto'
     pokemon_card_photo_url = pokemon_data.sprites.front_default;
     pokemon_card_photo.innerHTML = `<img src="${pokemon_card_photo_url}" alt="photo of ${pokemon_data.name}" />`;
 
@@ -107,11 +144,12 @@ open_pokeball = (pokemon_data, reverse, limit) => {
     pokemon_id.innerText = pokemon_id.id;
     pokemon_info.id = 'pokemon' + pokemon_id.id;
     pokemon_name = div();
-    pokemon_name.id = 'pokemonName';
+    pokemon_name.className = 'pokemonName';
+    pokemon_name.id = `${pokemon_data.name}`;
     pokemon_name.innerText = `${pokemon_data.name}`;
 
     pokemon_types = div();
-    pokemon_types.id = `pokemon${pokemon_id.id}Types`;
+    pokemon_types.className = 'pokemonTypes'
 
     get_pokemon_type(pokemon_data.types, pokemon_types);
 
@@ -126,8 +164,9 @@ open_pokeball = (pokemon_data, reverse, limit) => {
 }
 
 get_pokemon_type = (types, pokemon_types) => {
-    types.forEach( t => {
+    types.forEach( (t, i) => {
         type = div();
+        type.className = `type${i + 1} ${t ['type']['name']}`;
         type.innerText = t ['type']['name'];
         pokemon_types.append(type);
     })
