@@ -8,73 +8,88 @@
     <title>Pokelist</title>
 </head>
 <body>
-    <div>Navbar</div>
-    <div id="container">
+    <div style="height: 50px; text-align: center;">Navbar Placeholder</div>
 
-        <div class="" id="headerDiv">
-            <h1>Pokemon Finder</h1>
-        </div>
+    <div class="flex-default" id="container">
+        <div id="leftOutterBorder">dd</div><!-- LEFT OUTTER BORDER -->
+        
+        <div class="flex-default width-100" id="pageContent"><!--  MAIN CONTENT -->
+            <div id="leftInnerBorder"></div>
+            <form class="width-100" name="getPokemonForm" id="getPokemonForm">
 
-        <div id="pokemonDisplay">
-            
-            <form name="getPokemonForm" id="getPokemonForm">
-                <div id="fetchLimitGroup">
-                    <div id="limitGroup">
-                        <label for="pokemonPerPage">Gotta catch...</label>
-                        <select id="pokemonPerPage">
-                            <option value="10">10</option>
-                            <option value="20">20 </option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                            <option value="151">'em all!</option>
-                        </select>
+                <div class="flex-default">
+                    <div class="">
+                        <div class="" id="headerText">
+                            <span>Kanto Pokédex</span>
+                        </div>
+
+                        <div class="searchBarGroup">
+                            <div class="font-20">
+                                <span id="searchLabel">name, number or type</span>
+                            </div>
+                            <div class="">
+                                <input class="border-radius-5 font-18" type="text" id="searchBar">
+                            </div>
+                        </div>
                     </div>
-                    <div id="fetchButtonGroup">
-                        <button id="ascendButton"><i class="fas fa-sort-numeric-up"></i></button>
-                        <button id ="descendButton"><i class="fas fa-sort-numeric-down-alt"></i></button>
-            
-                    <!-- FUTURE USE
-                        <button id="ascendButtonA-Z"><i class="fas fa-sort-alpha-up"></i></button>
-                        <button id ="descendButtonZ-A"><i class="fas fa-sort-alpha-down-alt"></i></button>
-                        -->
-                        <button id="loadButton">Pokeball Explosion/Action</button>    
+
+                    <div>
+                        something about numbers pokedex registry
                     </div>
                 </div>
-
-                <div id="pokemonSearchGroup">
-                    <div class="flex-right">
-                        <span class="demoTerms" id="demoID">000</span>
-                        <span class="demoTerms" id="demoName">Magikarp</span>
-                        <span class="demoTerms flying" id="demoType">Water</span>
+                <div class="dev-border">
+                    <div class="flex-default">
+                        <div id="limitGroup">
+                            <select class="" id="pokemonPerPage">
+                                <option value="gottaCatch" hidden="hidden">Gotta catch...</option>
+                                <option value="10">10</option>
+                                <option value="20">20 </option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="151">'em all!</option>
+                            </select>
+                        </div>
+                        <div class="" id="sortGroup">
+                            <select name="sort" id="sort">
+                                <option id="ascendNum" value="highestNumber">Lowest Number</option>
+                                <option id ="descendNum" value="lowestNumber">Highest Number</option>
+                                <option id="ascendAlpha" value="" disabled="disabled">A - Z</option>
+                                <option id ="descendAlpha" value="" disabled="disabled">Z - A</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="flex-right">
-                        <input class="" type="text" id="searchBar" placeholder="Search here">
+
+                    <div class="" id="pokedex">
+                        <div id="loadingPlace" class="text-center">
+                            <span>Loading Gif...</span>
+                        </div>
                     </div>
                 </div>
-            </form>    
-            <div class="" id="pokedex">
-                <div id="loadingPlace" class="text-center">
-                    <span>Loading Gif...</span>
+                <div class="" id="pageButtonsGroup">
+                    <div class="pageButtons" id="pagesLeft">
+                        <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
+                        <button id="nextPage"><i class="fas fa-angle-left"></i></button>
+                    </div>
+                    <div class="pageButtons" id="pagesRight">
+                        <button id="previousPage"><i class="fas fa-angle-right"></i></button>
+                        <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
+                    </div>
                 </div>
-            </div>
 
-            
+            </form>  
+            <div id="rightInnerBorder"></div>
+        </div><!--  MAIN CONTENT CLOSE -->
 
-            <div class="" id="pageButtonsGroup">
-                <div class="pageButtons" id="pagesLeft">
-                    <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
-                    <button id="nextPage"><i class="fas fa-angle-left"></i></button>
-                </div>
-                <div class="pageButtons" id="pagesRight">
-                    <button id="previousPage"><i class="fas fa-angle-right"></i></button>
-                    <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
-                </div>
-            </div>
-        </div>
+        <div id="rightOutterBorder">dd</div><!-- RIGHT OUTTER BORDER -->
+        
+    </div><!-- CONTAINER CLOSE-->
+
+    <div style="height: 50px; text-align: center;">
+        footer placeholder
     </div>
 
     <div>
-        <script src="js/pokemonlist.js"></script>   
+        <!-- <script src="js/pokemonlist.js"></script>    -->
     </div>
     
 </body>

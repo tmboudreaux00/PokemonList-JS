@@ -35,10 +35,6 @@ load_button = document.getElementById('loadButton');
 next_button = document.getElementById("nextPage");
 previous_button = document.getElementById("previousPage");
 
-class_pokemonCard = document.getElementsByClassName('pokemonCard');
-class_pokemonIdDiv = document.getElementsByClassName('pokemonIdDiv');
-class_pokemonName = document.getElementsByClassName('pokemonName');
-class_pokemonTypes = document.getElementsByClassName('pokemonTypesDiv');
 search_bar = document.getElementById('searchBar');
 
 sort_by_id = 'id';
@@ -358,7 +354,7 @@ open_pokeball = (pokemon_data, reverse, limit) => {
 get_pokemon_type = (types, pokemon_types) => {
     types.forEach( (t, i) => {
         type = div();
-        type.className = `pokemonType type${i + 1} ${t ['type']['name']}`;
+        type.className = `border-radius-5 pokemonType type${i + 1} ${t ['type']['name']}`;
         type.innerText = t ['type']['name'];
         pokemon_types.append(type);
         new_type_array.push(`${t ['type']['name']}`);

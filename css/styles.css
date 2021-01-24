@@ -1,35 +1,161 @@
 @import 'l-xl-styles.css';
 
-/* BY CLASS */
+/* STYLE CLASSES */
 
+
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.dev-border {
+    border: solid 1px black;
+}
+
+.flex-default {
+    display: flex;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.j-c-left {
+    justify-content: left;
+}
+
+.margin-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+/* TAGS */
+
+select {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    background-color: gray;
+    border: none;
+    
+}
+
+
+/* IDS */
+
+#ascendAlpha:disabled, #descendAlpha {
+    background-color: red;
+}
+
+#leftInnerBorder, #rightInnerBorder {
+    background-color: red;
+    min-width: 50px;
+}
+
+#loadingPlace {
+    text-align: center;
+    line-height: 250px;
+    height: 250px;
+    width: 100%;
+}
+
+
+/* ELEMENT CLASSES */
+
+
+.pokemonType {
+    width: 50px;
+}
+
+.type1 {
+    
+}    
+
+.type2 {
+    
+} 
+
+/* TYPE CLASSES */
 .bug {
     background: #73a040;
 }
 
+.electric {
+    background: #eed535;
+}  
+
+.dragon {
+    background: linear-gradient(180deg, #52a4cf 50%, #f16e57 50%);
+}
+
+.fairy {
+    background: #fdbae9;
+}    
+
+.fighting {
+    background: #d56722
+}    
+
 .fire {
     background: #fc7d23;
-}
+}    
 
 .flying {
     background: linear-gradient(180deg, #3ec8f0 50%, #bdbab9 50%);
-}
+}    
+
+.ghost {
+    background: #7b62a3;
+}    
 
 .grass {
     background: #9BCC50;
-}
+}        
+
+.ground {
+    background: linear-gradient(180deg, #f7de40 50%, #ab9842 50%);
+}            
+
+.ice {
+    background: #50c3e7;
+}    
+
+.normal {
+    background: #a3acaf;
+}            
 
 .poison {
     background: #B97FC8;
 }
 
+.psychic {
+    background: #f366b9;
+}                
+
+.rock {
+    background: #a38c20;
+}            
+
+.steel {
+    background: #9eb7b8;
+}    
+
 .water {
     background: #4592c5;
-}
-
-.type1 {
-
-}
-
-.type2 {
-
 }

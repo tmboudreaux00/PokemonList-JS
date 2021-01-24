@@ -1,50 +1,27 @@
 
 /*  */
-/* BY ID */
+/* ELEMENT ID */
 #container {
     margin: auto;
-    width: 1140px;
-}
-
-#fetchButtonGroup, #fetchButtonGroup > div {
-    display: flex;
+    width: 100%;
 }
 
 #firstPage, #lastPage, #nextPage, #previousPage {
     margin: 5px;
 }
 
-
-
-#headerDiv {
-    text-align: center;
-    width: 100%;
-}
-
-#limitGroup {
-    display: flex;
-    
-}
-
 #getPokemonForm {
-    display: flex;
-    margin: 15px 68px;
 }
-#pokemonSearchGroup {
-    
-    width: 50%;
-}
-#fetchLimitGroup {
-   
-    width: 50%;
-}
-/* 1138 */
-#loadingPlace {
-    text-align: center;
-    line-height: 250px;
-    height: 250px;
+
+#headerText {
     width: 100%;
 }
+
+#leftOutterBorder, #rightOutterBorder {
+    background-color: black;
+    min-width: 1px;
+}
+
 
 #pageButtonsGroup {
     display: flex;
@@ -61,32 +38,28 @@
 }
 
 #pokedex {
-    border: solid black 1px;
     display: flex;
     flex-wrap: wrap;
-    margin: 10px 68px;
-    width: 1000px;
-
+    
+    min-height: 500px; 
 }
 
 #pokemonDisplay {
     border: solid black 1px;
 }
 
-#pokemonSearchGroup > div {
-    display: flex;
-}
-
 #searchBar {
     font-style: italic;
+    height: 30px;
+    width: 250px;
 }
 
-.flex-right {
-    display: flex;
-    justify-content: flex-end;
+searchLabel {
+    margin-right: calc(258px - 220px);
+    width: 220px;
 }
 
-/* BY CLASS */
+/* ELEMENT CLASS */
 
 .pokemonCard {
     border: solid black 1px;
@@ -98,3 +71,6 @@
     display: flex;
 }
 
+/* STYLE CLASS */
+
+/* TYPE CLASSES */
