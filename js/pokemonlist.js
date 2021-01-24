@@ -7,15 +7,16 @@
 // let get_el = html_tags.get_el;
 
 //VAR INIT
-let arr1, arr2, check_load, check_search, class_pokemonCard, class_pokemonIdDiv, class_pokemonName, class_pokemonTypes, current_page, default_sort, filter, first_button, i, id, id_array, 
+let arr1, arr2, ascend_button, check_load, check_search, class_pokemonCard, class_pokemonIdDiv, class_pokemonName, class_pokemonTypes, current_page, default_sort, descend_button, filter, first_button, i, id, id_array, 
     id_filter, j, last_button, limit, limit_record, name_array, name_filter, new_limit, new_offset, new_type_array, next_button, num_rows, number_of_pages, 
     offset, page, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
     pokemon_name, pokemon_types, pokemon_url, reverse, reverse_record, row, search_array, search_bar, sort_by_id, sort_id, sort_method, sort_option, type, type_array, type_filter;
     
 //FUNC INIT
-let append_pokemon, ascend_list, check, descend_list, div, first_page, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, init_search, last_page, load_button, load_pokedex,
+let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div, first_page, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, last_page, load_button, 
+    load_pokedex,
     next_page, open_pokeball, page_view, 
-    pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_pokemon, set_limit, sorter, throw_pokeball;   
+    pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, sorter, throw_pokeball;   
 
 const get_10 = 10;
 const get_20 = 20;
@@ -26,9 +27,10 @@ const get_all = 151;
 div = () => { return document.createElement('div'); }
 
 pokedex = document.querySelector('#pokedex');
-
-first_button = document.getElementById("firstPage");
-last_button = document.getElementById("lastPage");
+ascend_button = document.getElementById('ascendButton');
+descend_button = document.getElementById('descendButton');
+first_button = document.getElementById('firstPage');
+last_button = document.getElementById('lastPage');
 load_button = document.getElementById('loadButton');
 next_button = document.getElementById("nextPage");
 previous_button = document.getElementById("previousPage");
@@ -41,10 +43,11 @@ search_bar = document.getElementById('searchBar');
 
 sort_by_id = 'id';
 
-current_page = 0;
-number_of_pages = 0;
+current_page = 1;
+number_of_pages = 1;
 check_load = false;
 check_search = false;
+reverse = false;
 
 id_array = new Array();
 name_array = new Array();
@@ -63,26 +66,41 @@ let test_func = (limit, offset, reverse) => {
 }
 
 ascend_list = (e) => {
-
+    e.preventDefault();
+    reverse = false;
+    check_search = false;
+    if (!check_search && !check_load) { //if not a search func// if not a previous load
+            get_form(e); // get form data
+    } else { // not a search func but is a previous load
+        load_pokedex(current_page, check_load, check_search);
+    }
 }
 
 descend_list = (e) => {
-    
+    e.preventDefault();
+    reverse = true;
+    check_search = false;
+    if (!check_search && !check_load) { //if not a search func// if not a previous load
+        get_form(e); // get form data
+    } else { // not a search func but is a previous load
+        load_pokedex(current_page, check_load, check_search);
+    }
 }
 
 /** END CONSTRUCTION ZONE */
 
-init_search = () => {
-    if (!check_search) {
+search_init = () => {
+    if (check_search === false) {
+        reverse = false;
         current_page = 1;
-        check_search = true;
         check_load = false;
+        check_search = true;
         load_pokedex(current_page, check_load, check_search);
     }
 }
  
 search_pokemon = () => { //KEYUP EVENTS
-    
+    reverse = false;
     class_pokemonCard = pokedex.getElementsByClassName('pokemonCard');
     class_pokemonIdDiv = document.getElementsByClassName('pokemonIdDiv');
     class_pokemonName = document.getElementsByClassName('pokemonName');
@@ -136,29 +154,31 @@ pokemon_remove_class = (element, name) => {
 first_page = (e) => {
     e.preventDefault();
     current_page = 1;
-    load_pokedex(current_page);
+    load_pokedex(current_page, check_load, check_search);
 }
 
 last_page = (e) => {
     e.preventDefault();
     current_page = number_of_pages;
-    load_pokedex(current_page);
+    load_pokedex(current_page, check_load, check_search);
 }
 
 next_page = (e) => {
     e.preventDefault();
     current_page += 1;
-    load_pokedex(current_page);
+    load_pokedex(current_page, check_load, check_search);
 }
 
 previous_page = (e) => {
     e.preventDefault();
     current_page -= 1;
-    load_pokedex(current_page);
+    load_pokedex(current_page, check_load, check_search);
 }
 
 get_form = (e) => {
-    e.preventDefault();
+    if (!check_load) {
+        e.preventDefault();
+    }
     check_load = false;
     check_search = false;
     current_page = 1;
@@ -166,9 +186,8 @@ get_form = (e) => {
 }
 
 load_pokedex = (current_page, check_load, check_search) => {
-
+    console.log(reverse);
     limit = document.forms['getPokemonForm']['pokemonPerPage'].value;
-    reverse = document.forms['getPokemonForm']['checkbox'].checked;
 
     if (check_load) {
         reverse = reverse_record;
@@ -245,7 +264,20 @@ set_limit = (limit, reverse, current_page) => {
     page_view(new_limit, new_offset, reverse)
 }
 
-page_view = (limit, offset, reverse) => {
+// page_view = (limit, offset, reverse) => {
+//     pokedex.innerHTML = '';
+//     num_rows = (Math.ceil(limit / 5));
+
+//     for (i = 0; i < num_rows; i++) {
+//         row = div();
+//         row.className = 'pokemonRow';
+//         row.id = `row${i + 1}`;
+//         pokedex.append(row);
+//     }
+//     pokemon_list(limit, offset, reverse);
+// }; 
+
+page_view = (limit, offset, reverse) => { //TESTING FOR BOOTSTRAP
     pokedex.innerHTML = '';
     num_rows = (Math.ceil(limit / 5));
 
@@ -253,9 +285,8 @@ page_view = (limit, offset, reverse) => {
         row = div();
         row.className = 'pokemonRow';
         row.id = `row${i + 1}`;
-        pokedex.append(row);
     }
-    pokemon_list(limit, offset, reverse, num_rows);
+    pokemon_list(limit, offset, reverse);
 }; 
 
 pokemon_list = (limit, offset, reverse) => {
@@ -274,9 +305,8 @@ throw_pokeball = (pokemon, reverse, limit) => {
     fetch(pokemon_url)
     .then(response => response.json())
     .then(pokemon_card_data => {
-    open_pokeball(pokemon_card_data, reverse, limit);
-
-    })
+        open_pokeball(pokemon_card_data, reverse, limit);
+    });
 }
 
 open_pokeball = (pokemon_data, reverse, limit) => {
@@ -304,14 +334,14 @@ open_pokeball = (pokemon_data, reverse, limit) => {
     pokemon_id.innerText = pokemon_id.id;
     pokemon_info.id = 'pokemon' + pokemon_id.id;
     pokemon_name = div();
-    pokemon_name.className = 'filterTag pokemonName';
+    pokemon_name.className = 'pokemonName';
     pokemon_name.id = `${pokemon_data.name}`;
     pokemon_name.innerText = `${pokemon_data.name}`;
     id_array.push(pokemon_id.innerText);
     name_array.push(pokemon_name.innerText);
 
     pokemon_types = div();
-    pokemon_types.className = 'filterTag pokemonTypesDiv';
+    pokemon_types.className = 'pokemonTypesDiv';
 
     get_pokemon_type(pokemon_data.types, pokemon_types);
 
@@ -322,7 +352,6 @@ open_pokeball = (pokemon_data, reverse, limit) => {
         pokemon_types
     ); 
     pokemon_array.push(pokemon_info);
-
     sorter(pokemon_array, reverse, limit);
 }
 
@@ -344,7 +373,6 @@ sorter = (pokemon_array, reverse, limit) => {
             sort_id = pokemon_array.sort((a, b) => {
                 a = Number(a.getElementsByClassName('pokemonIdDiv')[0].id);
                 b = Number(b.getElementsByClassName('pokemonIdDiv')[0].id);
-                
                 return a < b ? - 1 : a > b ? + 1 : 0;
             });
             
@@ -361,20 +389,12 @@ sorter = (pokemon_array, reverse, limit) => {
 }
 
 append_pokemon = (pokemon_array, limit) => {
-    num_rows = (Math.ceil(limit / 5));
-    search_array = new Array();
     pokemon_array.forEach((p, i) => {
-        search_array.push(p.childNodes);
-        for (j = 1; j < (num_rows + 1); j++){
-            row = document.getElementById(`row${j}`);
-            row.className = 'd-flex';
-            if (Math.ceil((i + 1) / 5) === j) {
-                row.append(p)
-            }
-        }
-    })  
+        pokedex.append(p);
+    })
 }
-    get_number_of_pages = (limit) => {
+
+get_number_of_pages = (limit) => {
     number_of_pages = Math.ceil(get_all / limit);
 }
 
@@ -385,18 +405,26 @@ check = () => {
     last_button.disabled = current_page == number_of_pages ? true : false;
 }
 
-window.onload = () => {
+disable_page_buttons = () => {
     last_button.disabled = true; 
     first_button.disabled = true; 
     next_button.disabled = true; 
     previous_button.disabled = true;
 }
+
+window.onload = () => {
+    disable_page_buttons();
+}
+
+//MOVE TO HTML
+ascend_button.addEventListener('click', ascend_list);
+descend_button.addEventListener('click', descend_list);
 load_button.addEventListener('click', get_form);
 next_button.addEventListener('click', next_page);
 previous_button.addEventListener('click', previous_page);
 first_button.addEventListener('click', first_page);
 last_button.addEventListener('click', last_page);
-search_bar.addEventListener('click', init_search);
+search_bar.addEventListener('click', search_init);
 search_bar.addEventListener('keyup', search_pokemon)
 
     /** 

@@ -1,0 +1,35 @@
+@import 'l-xl-styles.css';
+
+/* BY CLASS */
+
+.bug {
+    background: #73a040;
+}
+
+.fire {
+    background: #fc7d23;
+}
+
+.flying {
+    background: linear-gradient(180deg, #3ec8f0 50%, #bdbab9 50%);
+}
+
+.grass {
+    background: #9BCC50;
+}
+
+.poison {
+    background: #B97FC8;
+}
+
+.water {
+    background: #4592c5;
+}
+
+.type1 {
+
+}
+
+.type2 {
+
+}

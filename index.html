@@ -3,85 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/97dc1343e3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Pokelist</title>
 </head>
 <body>
     <div>Navbar</div>
-    <div>
-    <h1>Pokemon List</h1>
-    </div>
-    <div class="pokemon-form-div">
-        <div class=""><input type="text" id="searchBar" placeholder="000, PokemonName, type"></div>
-        <div>
-            <div>search by...</div>
-            <div>id</div>
-            <div>name</div>
-            <div>type</div>
+    <div id="container">
+
+        <div class="" id="headerDiv">
+            <h1>Pokemon Finder</h1>
         </div>
-        <div>
-            <div><input />Asc</div>
-            <div><input />Desc</div>
-        </div>
-        <div class="form-for-pokemon">
-            <form name="getPokemonForm">
-                <div>
-                    <label for="pokemonPerPage">Per Page</label>
-                </div>
-                
-                <div>
-                    <select id="pokemonPerPage">
-                        <option value="10">10</option>
-                        <option value="20">20</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="151">All</option>
-                    </select>
-                </div>
-                
-                <div>
-                    <div>
-                        <label for="checkbox">Reverse?</label>
+
+        <div id="pokemonDisplay">
+            
+            <form name="getPokemonForm" id="getPokemonForm">
+                <div id="fetchLimitGroup">
+                    <div id="limitGroup">
+                        <label for="pokemonPerPage">Gotta catch...</label>
+                        <select id="pokemonPerPage">
+                            <option value="10">10</option>
+                            <option value="20">20 </option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                            <option value="151">'em all!</option>
+                        </select>
                     </div>
-                    <div>
-                        <input id="checkbox" name="checkbox" type="checkbox" />
+                    <div id="fetchButtonGroup">
+                        <button id="ascendButton"><i class="fas fa-sort-numeric-up"></i></button>
+                        <button id ="descendButton"><i class="fas fa-sort-numeric-down-alt"></i></button>
+            
+                    <!-- FUTURE USE
+                        <button id="ascendButtonA-Z"><i class="fas fa-sort-alpha-up"></i></button>
+                        <button id ="descendButtonZ-A"><i class="fas fa-sort-alpha-down-alt"></i></button>
+                        -->
+                        <button id="loadButton">Pokeball Explosion/Action</button>    
                     </div>
                 </div>
-                    
-                <div>
-                    <input id="loadButton" type="submit" value="Load" />
+
+                <div id="pokemonSearchGroup">
+                    <div class="flex-right">
+                        <span class="demoTerms" id="demoID">000</span>
+                        <span class="demoTerms" id="demoName">Magikarp</span>
+                        <span class="demoTerms flying" id="demoType">Water</span>
+                    </div>
+                    <div class="flex-right">
+                        <input class="" type="text" id="searchBar" placeholder="Search here">
+                    </div>
                 </div>
-            </form>
-
-        </div>
-
-        <div class="" id="pokedex">
-
-            <div class="oops-card d-none">
-                Oops! Something went wrong. There was a fetch error!
+            </form>    
+            <div class="" id="pokedex">
+                <div id="loadingPlace" class="text-center">
+                    <span>Loading Gif...</span>
+                </div>
             </div>
 
-            <div class="loading-gif">
-                Loading Gif...
-            </div>
+            
 
-        </div>
-
-        <div class="" id="">
-            <div id="pages">
-                <input type="button" id="firstPage" value="First" />
-                <input type="button" id="nextPage" value="Next" />
-                <input type="button" id="previousPage" value="Previous" />
-                <input type="button" id="lastPage" value="Last" />
+            <div class="" id="pageButtonsGroup">
+                <div class="pageButtons" id="pagesLeft">
+                    <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
+                    <button id="nextPage"><i class="fas fa-angle-left"></i></button>
+                </div>
+                <div class="pageButtons" id="pagesRight">
+                    <button id="previousPage"><i class="fas fa-angle-right"></i></button>
+                    <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
+                </div>
             </div>
         </div>
     </div>
 
-
     <div>
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
         <script src="js/pokemonlist.js"></script>   
     </div>
     
