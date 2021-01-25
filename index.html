@@ -11,76 +11,83 @@
     <div style="height: 50px; text-align: center;">Navbar Placeholder</div>
 
     <div class="flex-default" id="container">
-        <div id="leftOutterBorder">dd</div><!-- LEFT OUTTER BORDER -->
+        <div id="leftOutterBorder"></div><!-- LEFT OUTTER BORDER -->
         
-        <div class="flex-default width-100" id="pageContent"><!--  MAIN CONTENT -->
-            <div id="leftInnerBorder"></div>
-            <form class="width-100" name="getPokemonForm" id="getPokemonForm">
+        <div class="">
+            <div class="flex-default" id="headingWrapper"><!-- HEADING WRAPPER -->
+                <div id="upperLeftInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
+                <div class="" id="headerText">
+                    <span>Kanto Pokédex</span>
+                </div>
+                <div id="upperRightInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
+            </div>
+                        
+            <div class="flex-default" id="searchWrapper"><!-- SEARCH WRAPPER -->
+                <div id="midLeftInnerBorder"></div><!-- MID LEFT INNER BORDER -->
+           
+                <div class="bg-color-dark flex-default j-c-between" id="searchGroup">
+                    <div class="searchBarGroup">
+                        <div class="font-20">
+                            <span id="searchLabel">name, number or type</span>
+                        </div>
+                        <div class="">
+                            <input class="border-radius-5 font-18" type="text" id="searchBar">
+                        </div>
+                    </div>
+                    <div id="searchBanner">
+                        <span>Search for a Pokémon by name, type or using its National Pokédex number.</span>
+                    </div>
+                </div>    
+               
+                <div id="midRightInnerBorder"></div><!-- MID RIGHT INNER BORDER -->
+            </div>
 
-                <div class="flex-default">
+            <div class="flex-default" id="pageContent"><!--  MAIN CONTENT -->
+                <div id="lowerLeftInnerBorder"></div><!-- LOWER LEFT INNER BORDER -->
+                <form class="width-100" name="getPokemonForm" id="getPokemonForm">
                     <div class="">
-                        <div class="" id="headerText">
-                            <span>Kanto Pokédex</span>
-                        </div>
-
-                        <div class="searchBarGroup">
-                            <div class="font-20">
-                                <span id="searchLabel">name, number or type</span>
+                        <div class="flex-default">
+                            <div id="limitGroup">
+                                <select class="" id="pokemonPerPage">
+                                    <option value="gottaCatch" hidden="hidden">Gotta catch...</option>
+                                    <option value="10">10</option>
+                                    <option value="20">20 </option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="151">'em all!</option>
+                                </select>
                             </div>
-                            <div class="">
-                                <input class="border-radius-5 font-18" type="text" id="searchBar">
+                            <div class="" id="sortGroup">
+                                <select name="sort" id="sort">
+                                    <option id="ascendNum" value="highestNumber">Lowest Number</option>
+                                    <option id ="descendNum" value="lowestNumber">Highest Number</option>
+                                    <option id="ascendAlpha" value="" disabled="disabled">A - Z</option>
+                                    <option id ="descendAlpha" value="" disabled="disabled">Z - A</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="" id="pokedex">
+                            <div id="loadingPlace" class="text-center">
+                                <span>Loading Gif...</span>
                             </div>
                         </div>
                     </div>
-
-                    <div>
-                        something about numbers pokedex registry
-                    </div>
-                </div>
-                <div class="dev-border">
-                    <div class="flex-default">
-                        <div id="limitGroup">
-                            <select class="" id="pokemonPerPage">
-                                <option value="gottaCatch" hidden="hidden">Gotta catch...</option>
-                                <option value="10">10</option>
-                                <option value="20">20 </option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                                <option value="151">'em all!</option>
-                            </select>
+                    <div class="" id="pageButtonsGroup">
+                        <div class="pageButtons" id="pagesLeft">
+                            <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
+                            <button id="nextPage"><i class="fas fa-angle-left"></i></button>
                         </div>
-                        <div class="" id="sortGroup">
-                            <select name="sort" id="sort">
-                                <option id="ascendNum" value="highestNumber">Lowest Number</option>
-                                <option id ="descendNum" value="lowestNumber">Highest Number</option>
-                                <option id="ascendAlpha" value="" disabled="disabled">A - Z</option>
-                                <option id ="descendAlpha" value="" disabled="disabled">Z - A</option>
-                            </select>
+                        <div class="pageButtons" id="pagesRight">
+                            <button id="previousPage"><i class="fas fa-angle-right"></i></button>
+                            <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
                         </div>
                     </div>
+                </form>            
+                <div id="lowerRightInnerBorder"></div> <!-- LOWER RIGHT INNER BORDER -->
+            </div><!--  MAIN CONTENT CLOSE -->
+        </div>
 
-                    <div class="" id="pokedex">
-                        <div id="loadingPlace" class="text-center">
-                            <span>Loading Gif...</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="" id="pageButtonsGroup">
-                    <div class="pageButtons" id="pagesLeft">
-                        <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
-                        <button id="nextPage"><i class="fas fa-angle-left"></i></button>
-                    </div>
-                    <div class="pageButtons" id="pagesRight">
-                        <button id="previousPage"><i class="fas fa-angle-right"></i></button>
-                        <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
-                    </div>
-                </div>
-
-            </form>  
-            <div id="rightInnerBorder"></div>
-        </div><!--  MAIN CONTENT CLOSE -->
-
-        <div id="rightOutterBorder">dd</div><!-- RIGHT OUTTER BORDER -->
+        <div id="rightOutterBorder"></div><!-- RIGHT OUTTER BORDER -->
         
     </div><!-- CONTAINER CLOSE-->
 

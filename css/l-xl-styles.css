@@ -1,9 +1,7 @@
 
 /*  */
 /* ELEMENT ID */
-#container {
-    margin: auto;
-    width: 100%;
+#container {   
 }
 
 #firstPage, #lastPage, #nextPage, #previousPage {
@@ -11,22 +9,39 @@
 }
 
 #getPokemonForm {
+    width: 900px;
 }
 
 #headerText {
-    width: 100%;
+    max-width: 900px;
 }
 
+#headerText > span {
+    
+}
+
+#headingWrapper { 
+}
+
+/* @1024 min-width: 1px; */
 #leftOutterBorder, #rightOutterBorder {
     background-color: black;
     min-width: 1px;
+    width: 100%;
+}
+
+
+#lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
+    width: 292px;
 }
 
 
 #pageButtonsGroup {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 15px;
+
+}
+
+#pageContent {
+    
 }
 
 #pagesLeft {
@@ -40,12 +55,16 @@
 #pokedex {
     display: flex;
     flex-wrap: wrap;
-    
+    width: 900px;
     min-height: 500px; 
 }
 
 #pokemonDisplay {
-    border: solid black 1px;
+    
+}
+
+#searchBanner { /* MEDIUM AND LARGER */
+    
 }
 
 #searchBar {
@@ -54,9 +73,20 @@
     width: 250px;
 }
 
+#searchGroup {
+    width: 900px;
+}
+
 searchLabel {
     margin-right: calc(258px - 220px);
     width: 220px;
+}
+
+#searchBarGroup {
+    
+}
+
+#searchWrapper {
 }
 
 /* ELEMENT CLASS */
