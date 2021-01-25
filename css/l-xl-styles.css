@@ -9,11 +9,11 @@
 }
 
 #getPokemonForm {
-    width: 900px;
+    width: 950px;
 }
 
 #headerText {
-    max-width: 900px;
+    max-width: 950px;
 }
 
 #headerText > span {
@@ -32,9 +32,8 @@
 
 
 #lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
-    width: 292px;
+    width: 200px;
 }
-
 
 #pageButtonsGroup {
 
@@ -55,7 +54,7 @@
 #pokedex {
     display: flex;
     flex-wrap: wrap;
-    width: 900px;
+    width: 950px;
     min-height: 500px; 
 }
 
@@ -67,20 +66,12 @@
     
 }
 
-#searchBar {
-    font-style: italic;
-    height: 30px;
-    width: 250px;
-}
+
 
 #searchGroup {
-    width: 900px;
+    width: 950px;
 }
 
-searchLabel {
-    margin-right: calc(258px - 220px);
-    width: 220px;
-}
 
 #searchBarGroup {
     
@@ -94,7 +85,7 @@ searchLabel {
 .pokemonCard {
     border: solid black 1px;
     margin: 3px;
-    width: calc(900px / 5);
+    width: calc(950px / 5);
 }
 
 .pokemonTypesDiv {

@@ -1,5 +1,7 @@
 @import 'l-xl-styles.css';
 
+/* "Flexo-Regular", arial, sans-serif; */
+
 /* STYLE CLASSES */
 
 
@@ -70,31 +72,28 @@ select {
     -webkit-appearance: none;
     background-color: gray;
     border: none;
-    
 }
-
 
 /* IDS */
-
-#ascendAlpha:disabled, #descendAlpha {
-    background-color: red;
-}
-
 #container {
     
 }
 
+#getPokemonForm, #headerText, #searchGroup  {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
 #headerText {
-    min-height: 60px;
-    width: 100%;
+    width: 100%;   
 }
 
 #headerText > span {
     color: #919191;
-    line-height: 50px;  
+    line-height: 60px;
 }
 
-#lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
+#lowerLeftInnerBorder, #lowerRightInnerBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
     background-color: red;
     min-width: 50px;
 }
@@ -106,20 +105,69 @@ select {
     width: 100%;
 }
 
+#midLeftInnerBorder, #midRightInnerBorder, #searchGroup {
+    background: #313131;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
 #pageButtonsGroup {
     display: flex;
     justify-content: space-around;
     margin-top: 15px;
 }
 
+#resetButtonGroup {
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+#resetWrapper{
+    border: solid 5px red;
+    border-radius: 5px;
+    clip-path: polygon(0 0, 100% 0, 100% 87.5%, 66% 87.5%, 65% 100%, 34% 100%, 33% 87.5%, 0 87.5%);
+    margin-bottom: -10px;
+}
+
+#resetLeftBorder, #resetRightBorder, #resetWrapper {
+    background: #616161;
+    height: 64px;
+}
+
 #searchBanner {
     background-color: #4dad5c;
     border-radius: 5px;
-    color : #FFF;
+    color : #fff;
+    max-width: 430px;
     padding: 20px;
 }
 
+#searchBar {
+    border: 3px solid #616161;
+    height: 24px;
+    width: 300px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
 
+#searchBarGroup {
+    display: flex;
+}
+
+#searchGroup {
+}
+
+#searchLabel {
+    margin-bottom: 5px;
+}
+
+#searchLabelSpan {
+    color: #fff;
+}
+
+#searchWrapper {
+    
+}
 
 /* ELEMENT CLASSES */
 
