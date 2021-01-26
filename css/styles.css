@@ -4,7 +4,6 @@
 
 /* STYLE CLASSES */
 
-
 .border-radius-5 {
     border-radius: 5px;
 }
@@ -117,27 +116,136 @@ select {
     margin-top: 15px;
 }
 
+#pokemonPerPage, #searchBar, #sort {
+    width: 300px;
+}
+
+#pokemonPerPage, #sort {
+    border: 3px solid #313131;
+    height: 48px;
+}
+
+
+#customPokeBall {
+    background: #3ec8f0;
+    border: 4px solid #313131;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: 1;
+}
+
+#cpbButtonGroup {
+ 
+    
+    height: 100px;
+    width: 100px;
+    position: relative;
+    z-index: 2;
+}
+
+#cpbUpperBorder {
+    background: #313131;
+    height: 2px;
+    width: 100px;
+    top: 50%;
+    position: relative;
+    z-index: 3;
+}
+#cpbUpperBorderEllipse
+#cpbLowerBorderEllipse {
+
+}
+
+#cpbLowerBorder {
+    background: #313131;
+    height: 2px;
+    width: 100px;
+    top: 50%;
+    position: relative;
+    z-index: 3;
+}
+
+#outterButton {
+
+}
+
+#innerButton {
+
+}
+
+#openPokeball {
+
+}
+
+#cpbCenter {
+    height: 100px;
+    width: 100px;
+    margin-top: -50%
+}
+
+#cpbLower {
+    background: #fff;
+    clip-path: ellipse(50% 50% at 50% 0%);
+    height: 100%;
+    width: 100%;
+    margin-top: -50%;
+}
+
+#cpbUpper { 
+    background: #e3350c;
+    clip-path: ellipse(50% 50% at 50% 100%);
+    margin-top: -50%;
+    height: 100%;
+    width: 100%;
+}
+
+
+#theballUpper, #theballLower {
+    
+}
+
+#pokemonPerPage {
+    
+}
+
+#sort {
+    background: #313131;
+    
+    color: #fff;
+    padding-left: 8px;
+}
+
 #resetButtonGroup {
     margin: auto;
     margin-bottom: 10px;
 }
 
-#resetWrapper{
-    border: solid 5px red;
-    border-radius: 5px;
-    clip-path: polygon(0 0, 100% 0, 100% 87.5%, 66% 87.5%, 65% 100%, 34% 100%, 33% 87.5%, 0 87.5%);
-    margin-bottom: -10px;
+#resetLeftBorder, #resetRightBorder {
+
 }
 
-#resetLeftBorder, #resetRightBorder, #resetWrapper {
+#resetWrapper {
     background: #616161;
-    height: 64px;
+    clip-path: polygon(0 0, 100% 0, 
+                        100% 56px, 933px 56px,
+                        930px 57px, 927px 59px,
+                        921px 64px, 913px 70px,
+                        911px 71px, 909px 72px,
+                     
+                        491px 72px, 489px 71px,
+                        487px 70px, 479px 64px,
+                        473px 59px, 470px 57px,
+                        467px 56px, 0 56px); 
+    height: 72px;
+    margin-bottom: -16px;
 }
 
 #searchBanner {
-    background-color: #4dad5c;
+    background: #4dad5c;
     border-radius: 5px;
-    color : #fff;
+    color: #fff;
     max-width: 430px;
     padding: 20px;
 }
@@ -145,7 +253,6 @@ select {
 #searchBar {
     border: 3px solid #616161;
     height: 24px;
-    width: 300px;
     padding-top: 8px;
     padding-bottom: 8px;
 }
@@ -169,11 +276,20 @@ select {
     
 }
 
+#selectGroup {
+    margin-top: 48px;
+}
+
 /* ELEMENT CLASSES */
 
 
 .pokemonType {
     width: 50px;
+}
+
+.sortIcon {
+    padding-right: 12px;
+    color: blue;
 }
 
 .type1 {

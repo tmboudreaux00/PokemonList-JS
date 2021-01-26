@@ -41,7 +41,21 @@
                
                 <div id="midRightInnerBorder"></div><!-- MID RIGHT INNER BORDER -->
             </div>
-
+ <div id="customPokeBall">
+    <div id="cpbUpper"></div>
+    <div id="cpbCenter">
+        <div id="cpbButtonGroup">
+            <div id="cpbUpperBorder"><div id="cpbUpperBorderEllipse"></div></div>
+            <div id="outterButton">
+                <div id="innerButton">
+                    <div id="openPokeball"></div>
+                </div>
+            </div>
+            <div id="cpbLowerBorder"><div id="cpbLowerBorderEllipse"></div></div>
+        </div>
+    </div>
+    <div id="cpbLower"></div>    
+</div><!-- DELETE ME TEST ONLY -->
             <div class="flex-default" id="resetWrapper"><!--  RESET BUTTON WRAPPER-->
                 <div id="resetLeftBorder"></div><!-- RESET LEFT BORDER -->
                 <div id="resetButtonGroup">
@@ -54,9 +68,9 @@
                 <div id="lowerLeftInnerBorder"></div><!-- LOWER LEFT INNER BORDER -->
                 <form class="width-100" name="getPokemonForm" id="getPokemonForm">
                     <div class="">
-                        <div class="flex-default">
+                        <div class="flex-default j-c-between" id="selectGroup">
                             <div id="limitGroup">
-                                <select class="" id="pokemonPerPage">
+                                <select class="border-radius-5" id="pokemonPerPage">
                                     <option value="gottaCatch" hidden="hidden">Gotta catch...</option>
                                     <option value="10">10</option>
                                     <option value="20">20 </option>
@@ -65,12 +79,12 @@
                                     <option value="151">'em all!</option>
                                 </select>
                             </div>
-                            <div class="" id="sortGroup">
-                                <select name="sort" id="sort">
-                                    <option id="ascendNum" value="highestNumber">Lowest Number</option>
-                                    <option id ="descendNum" value="lowestNumber">Highest Number</option>
-                                    <option id="ascendAlpha" value="" disabled="disabled">A - Z</option>
-                                    <option id ="descendAlpha" value="" disabled="disabled">Z - A</option>
+                            <div id="sortGroup">
+                                <select class="border-radius-5" name="sort" id="sort">
+                                    <option id="ascendNum" value="highestNumber"><span class="sortIcon">Icon </span><span>Lowest Number</span></option>
+                                    <option id ="descendNum" value="lowestNumber"><span class="sortIcon">Icon </span><span>Highest Number</span></option>
+                                    <option id="ascendAlpha" value="" disabled="disabled"><span class="sortIcon">Icon </span><span>A - Z</span></option>
+                                    <option id ="descendAlpha" value="" disabled="disabled"><span class="sortIcon">Icon </span><span>Z - A</span></option>
                                 </select>
                             </div>
                         </div>
@@ -89,6 +103,9 @@
                             <button id="previousPage"><i class="fas fa-angle-right"></i></button>
                             <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
                         </div>
+
+                       
+
                     </div>
                 </form>            
                 <div id="lowerRightInnerBorder"></div> <!-- LOWER RIGHT INNER BORDER -->
