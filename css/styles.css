@@ -1,69 +1,25 @@
+
+@import'classes.css';
 @import 'l-xl-styles.css';
+@import 'pokeBall.css';
 
-/* "Flexo-Regular", arial, sans-serif; */
-
-/* STYLE CLASSES */
-
-.border-radius-5 {
-    border-radius: 5px;
+body {
+    font-family: Flexo-Regular, arial, sans-serif;
 }
 
-.bg-color-dark {
-    background-color: #313131;
-}
-
-.bg-color-gray {
-    background-color: #616161;
-}
-
-.dev-border {
-    border: solid 1px black;
-}
-
-.flex-default {
-    display: flex;
-}
-
-.flex-right {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.font-18 {
-    font-size: 18px;
-}
-
-.font-20 {
-    font-size: 20px;
-}
-
-.j-c-between {
-    justify-content: space-between;
-}
-
-.j-c-start {
-    justify-content: flex-start;
-}
-
-.margin-x-auto {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.margin-y-auto {
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-.width-50 {
-    width: 50%;
-}
-
-.width-100 {
-    width: 100%;
-}
 
 /* TAGS */
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: none;
+}
+
+select:focus {
+    outline: none;
+}
 
 select {
     appearance: none;
@@ -75,12 +31,16 @@ select {
 
 /* IDS */
 #container {
-    
+    height: 100vh;
 }
 
 #getPokemonForm, #headerText, #searchGroup  {
     padding-left: 25px;
     padding-right: 25px;
+}
+
+#getPokemonForm {
+    right: calc(950px - 50%);
 }
 
 #headerText {
@@ -98,9 +58,9 @@ select {
 }
 
 #loadingPlace {
+    display: flex;
     text-align: center;
-    line-height: 250px;
-    height: 250px;
+
     width: 100%;
 }
 
@@ -113,113 +73,24 @@ select {
 #pageButtonsGroup {
     display: flex;
     justify-content: space-around;
-    margin-top: 15px;
-}
-
-#pokemonPerPage, #searchBar, #sort {
-    width: 300px;
-}
-
-#pokemonPerPage, #sort {
-    border: 3px solid #313131;
-    height: 48px;
-}
-
-
-#customPokeBall {
-    background: #3ec8f0;
-    border: 4px solid #313131;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    position: absolute;
-    z-index: 1;
-}
-
-#cpbButtonGroup {
- 
-    
-    height: 100px;
-    width: 100px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     position: relative;
-    z-index: 2;
 }
 
-#cpbUpperBorder {
-    background: #313131;
-    height: 2px;
-    width: 100px;
-    top: 50%;
-    position: relative;
-    z-index: 3;
-}
-#cpbUpperBorderEllipse
-#cpbLowerBorderEllipse {
-
-}
-
-#cpbLowerBorder {
-    background: #313131;
-    height: 2px;
-    width: 100px;
-    top: 50%;
-    position: relative;
-    z-index: 3;
-}
-
-#outterButton {
-
-}
-
-#innerButton {
-
-}
-
-#openPokeball {
-
-}
-
-#cpbCenter {
-    height: 100px;
-    width: 100px;
-    margin-top: -50%
-}
-
-#cpbLower {
-    background: #fff;
-    clip-path: ellipse(50% 50% at 50% 0%);
-    height: 100%;
-    width: 100%;
-    margin-top: -50%;
-}
-
-#cpbUpper { 
-    background: #e3350c;
-    clip-path: ellipse(50% 50% at 50% 100%);
-    margin-top: -50%;
-    height: 100%;
-    width: 100%;
-}
-
-
-#theballUpper, #theballLower {
+#pageContent {
     
 }
 
 #pokemonPerPage {
-    
-}
-
-#sort {
-    background: #313131;
-    
-    color: #fff;
-    padding-left: 8px;
+    border: 3px solid #313131;
+    height: 40px;
+    width: 300px;
 }
 
 #resetButtonGroup {
-    margin: auto;
-    margin-bottom: 10px;
+    margin-top: 36px;
+    margin-left: 50%;
 }
 
 #resetLeftBorder, #resetRightBorder {
@@ -228,8 +99,8 @@ select {
 
 #resetWrapper {
     background: #616161;
-    clip-path: polygon(0 0, 100% 0, 
-                        100% 56px, 933px 56px,
+    clip-path: polygon(0 0, calc(100% + 1px) 0, 
+                        calc(100% + 1px) 56px, 933px 56px,
                         930px 57px, 927px 59px,
                         921px 64px, 913px 70px,
                         911px 71px, 909px 72px,
@@ -253,6 +124,7 @@ select {
 #searchBar {
     border: 3px solid #616161;
     height: 24px;
+    width: 300px;
     padding-top: 8px;
     padding-bottom: 8px;
 }
@@ -280,16 +152,22 @@ select {
     margin-top: 48px;
 }
 
-/* ELEMENT CLASSES */
+#sort {
+    background: #313131;
+    color: #fff;
+    height: 40px;
+    width: 300px;
+}
 
+#sortGroup {
+    border: 4px solid #000;
+    border-radius: 5px;
+}
+
+/* ELEMENT CLASSES */
 
 .pokemonType {
     width: 50px;
-}
-
-.sortIcon {
-    padding-right: 12px;
-    color: blue;
 }
 
 .type1 {
@@ -299,72 +177,3 @@ select {
 .type2 {
     
 } 
-
-/* TYPE CLASSES */
-.bug {
-    background: #73a040;
-}
-
-.electric {
-    background: #eed535;
-}  
-
-.dragon {
-    background: linear-gradient(180deg, #52a4cf 50%, #f16e57 50%);
-}
-
-.fairy {
-    background: #fdbae9;
-}    
-
-.fighting {
-    background: #d56722
-}    
-
-.fire {
-    background: #fc7d23;
-}    
-
-.flying {
-    background: linear-gradient(180deg, #3ec8f0 50%, #bdbab9 50%);
-}    
-
-.ghost {
-    background: #7b62a3;
-}    
-
-.grass {
-    background: #9BCC50;
-}        
-
-.ground {
-    background: linear-gradient(180deg, #f7de40 50%, #ab9842 50%);
-}            
-
-.ice {
-    background: #50c3e7;
-}    
-
-.normal {
-    background: #a3acaf;
-}            
-
-.poison {
-    background: #B97FC8;
-}
-
-.psychic {
-    background: #f366b9;
-}                
-
-.rock {
-    background: #a38c20;
-}            
-
-.steel {
-    background: #9eb7b8;
-}    
-
-.water {
-    background: #4592c5;
-}
