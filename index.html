@@ -6,7 +6,7 @@
     <script src="https://kit.fontawesome.com/97dc1343e3.js" crossorigin="anonymous"></script>
     
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@200;300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 
     <title>Pokelist</title>
@@ -21,7 +21,7 @@
             <div class="flex-default" id="headingWrapper"><!-- HEADING WRAPPER -->
                 <div id="upperLeftInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
                 <div id="headerText">
-                    <span class="font-20">Kanto Pokédex</span>
+                    <span class="font-28">Kanto Pokédex</span>
                 </div>
                 <div id="upperRightInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
             </div>
@@ -31,12 +31,13 @@
            
                 <div class="flex-default j-c-between" id="searchGroup">
                     <div class="searchBarGroup">
-                        <div class="font-20" id="searchLabel">
+                        <div class="font-28" id="searchLabel">
                             <span id="searchLabelSpan">Name, Number or Type</span>
                         </div>
                         <div class="">
                             <input class="border-radius-5 font-20" type="text" id="searchBar">
                         </div>
+                        <div class="font-18" id="directionLabel">Filter and sort a list below!</div>
                     </div>
                     <div class="font-20" id="searchBanner">
                         <span>Search for a Pokémon by name, type or using its National Pokédex number.</span>
@@ -57,7 +58,7 @@
             <div class="flex-default" id="pageContent"><!--  MAIN CONTENT -->
                 <div id="lowerLeftInnerBorder"></div><!-- LOWER LEFT INNER BORDER -->
                 <form class="width-100" name="getPokemonForm" id="getPokemonForm">
-                    <div class="">
+                    <div>
                         <div class="flex-default j-c-between" id="selectGroup">
                             <div id="limitGroup">
                                 <!-- <div class="border-radius-5" id="pokemonPerPage">
@@ -78,7 +79,6 @@
                                 </select>
                             </div>
 
-
                             <div id="sortGroup">
                                 <select class="" name="sort" id="sort">
                                     <option id="ascendNum" value="highestNumber"><span class="sortIcon">Icon </span><span>Lowest Number</span></option>
@@ -89,7 +89,6 @@
                             </div>
                         </div>
 
-
                         <div id="menuPokeBall">
                             <div id="mbUpper">
                                 <div id="mbUpperBorder">
@@ -99,42 +98,43 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>    
-
+                            </div>
                               
                             <div id="ballGroup">
                                 <div class="" id="pokedex">
-                                    <div id="loadingPlace" class="text-center">
-                                        <!-- <div style="background: #313131; height: 150px; width: 150px; margin: 5px;"></div>
-                                        <div style="background: #313131; height: 150px; width: 150px; margin: 5px;"></div>
-                                        <div style="background: #313131; height: 150px; width: 150px; margin: 5px;"></div>
-                                        <div style="background: #313131; height: 150px; width: 150px; margin: 5px;"></div>
-                                        <div style="background: #313131; height: 150px; width: 150px; margin: 5px;"></div> -->
-                                    </div>
+                                    
+                                        <div class="fillerCard"></div>
+                                        <div class="fillerCard"></div>
+                                        <div class="fillerCard"></div>
+                                        <div class="fillerCard"></div>
+                                        <div class="fillerCard"></div>
+                                    
                                 </div>
 
                                 <div id="mbLower">
                                     <div id="mbLowerBorder">
                                         <div id="mbLowerBorderEllipse"></div>
                                     </div>
-                                </div> 
-                            
+                                </div>                          
                             </div>
                         </div>
-
-                   </div>
+                    </div>
                 </form>            
                 <div id="lowerRightInnerBorder"></div> <!-- LOWER RIGHT INNER BORDER -->
             </div><!--  MAIN CONTENT CLOSE -->
-            <div class="" id="pageButtonsGroup">
-                <div class="pageButtons" id="pagesLeft">
-                    <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
-                    <button id="nextPage"><i class="fas fa-angle-left"></i></button>
+            <div class="" id="pageButtonsWrapper">
+                <div id="pageButtonsLeftBorder"></div>
+                <div id="pageControllers">
+                    <div class="pageButtons" id="pagesLeft">
+                        <button id="firstPage"><i class="fas fa-angle-double-left"></i></button>
+                        <button id="nextPage"><i class="fas fa-angle-left"></i></button>
+                    </div>
+                    <div class="pageButtons" id="pagesRight">
+                        <button id="previousPage"><i class="fas fa-angle-right"></i></button>
+                        <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
+                    </div>
                 </div>
-                <div class="pageButtons" id="pagesRight">
-                    <button id="previousPage"><i class="fas fa-angle-right"></i></button>
-                    <button id="lastPage"><i class="fas fa-angle-double-right"></i></button>
-                </div>
+                <div id="pageButtonsRightBorder"></div>
             </div>
         </div>
         <div id="rightOutterBorder"></div><!-- RIGHT OUTTER BORDER -->   
@@ -145,7 +145,7 @@
     </div>
 
     <div>
-        <!-- <script src="js/pokemonlist.js"></script>    -->
+        <script src="js/pokemonlist.js"></script>   
     </div>
     
 </body>

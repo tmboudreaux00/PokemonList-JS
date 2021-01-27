@@ -7,7 +7,7 @@
 // let get_el = html_tags.get_el;
 
 //VAR INIT
-let arr1, arr2, ascend_button, check_load, check_search, class_pokemonCard, class_pokemonIdDiv, class_pokemonName, class_pokemonTypes, current_page, default_sort, descend_button, filter, first_button, i, id, id_array, 
+let arr1, arr2, check_load, check_search, class_pokemonCard, class_pokemonIdDiv, class_pokemonName, class_pokemonTypes, current_page, default_sort, filter, first_button, i, id, id_array, 
     id_filter, j, last_button, limit, limit_record, name_array, name_filter, new_limit, new_offset, new_type_array, next_button, num_rows, number_of_pages, 
     offset, page, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
     pokemon_name, pokemon_types, pokemon_url, reverse, reverse_record, row, search_array, search_bar, sort_by_id, sort_id, sort_method, sort_option, type, type_array, type_filter;
@@ -27,11 +27,9 @@ const get_all = 151;
 div = () => { return document.createElement('div'); }
 
 pokedex = document.querySelector('#pokedex');
-ascend_button = document.getElementById('ascendButton');
-descend_button = document.getElementById('descendButton');
 first_button = document.getElementById('firstPage');
 last_button = document.getElementById('lastPage');
-load_button = document.getElementById('loadButton');
+load_button = document.getElementById('mbInnerButton');
 next_button = document.getElementById("nextPage");
 previous_button = document.getElementById("previousPage");
 
@@ -413,8 +411,7 @@ window.onload = () => {
 }
 
 //MOVE TO HTML
-ascend_button.addEventListener('click', ascend_list);
-descend_button.addEventListener('click', descend_list);
+
 load_button.addEventListener('click', get_form);
 next_button.addEventListener('click', next_page);
 previous_button.addEventListener('click', previous_page);

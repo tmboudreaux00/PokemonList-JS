@@ -1,8 +1,6 @@
 
 /*  */
 /* ELEMENT ID */
-#container {   
-}
 
 #firstPage, #lastPage, #nextPage, #previousPage {
     margin: 5px;
@@ -16,13 +14,6 @@
     max-width: 950px;
 }
 
-#headerText > span {
-    
-}
-
-#headingWrapper { 
-}
-
 /* @1024 min-width: 1px; */
 #leftOutterBorder, #rightOutterBorder {
     background-color: black;
@@ -31,16 +22,8 @@
 }
 
 
-#lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
+#lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #pageButtonsLeftBorder, #pageButtonsRightBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
     width: 200px;
-}
-
-#pageButtonsGroup {
-
-}
-
-#pageContent {
-    
 }
 
 #pagesLeft {
@@ -54,38 +37,32 @@
 #pokedex {
     display: flex;
     flex-wrap: wrap;
+    padding: 0 10px;
     width: 950px;
-
 }
-
-#pokemonDisplay {
-    
-}
-
-#searchBanner { /* MEDIUM AND LARGER */
-    
-}
-
-
 
 #searchGroup {
     width: 950px;
 }
 
-
-#searchBarGroup {
-    
-}
-
-#searchWrapper {
-}
-
 /* ELEMENT CLASS */
 
+.fillerCard {
+    background-image: url('../img/card.png');
+    background-size: contain;
+    border: 3px solid #0b164e;
+    border-radius: 10px;
+    height: 249px;
+    width: 170px;
+    margin: 5px 5px;
+}
+
 .pokemonCard {
-    border: solid black 1px;
-    margin: 3px;
-    width: calc(950px / 5);
+    border: 3px solid #0b164e;
+    border-radius: 5px;
+    height: 249px;
+    width: 170px;
+    margin: 5px 5px;
 }
 
 .pokemonTypesDiv {
