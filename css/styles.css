@@ -156,6 +156,20 @@ select {
 
 /* ELEMENT CLASSES */
 
+.fillerCard {
+    
+}
+
+.pokemonCard {
+    border: 3px solid #0b164e;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.pokemonPhoto {
+    background: #f2f2f2;
+}
+
 .pokemonType {
     width: 50px;
 }

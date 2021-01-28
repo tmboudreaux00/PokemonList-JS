@@ -8,7 +8,7 @@
 
 //VAR INIT
 let arr1, arr2, check_load, check_search, class_pokemonCard, class_pokemonIdDiv, class_pokemonName, class_pokemonTypes, current_page, default_sort, filter, first_button, i, id, id_array, 
-    id_filter, j, last_button, limit, limit_record, name_array, name_filter, new_limit, new_offset, new_type_array, next_button, num_rows, number_of_pages, 
+    id_filter, j, last_button, limit, limit_record, name_array, name_filter, new_limit, new_offset, new_type_array, next_button, number_of_pages, 
     offset, page, previous_button, pokedex, pokemon_array, pokemon_card_data, pokemon_card_photo, pokemon_card_photo_url, pokemon_id, pokemon_info,
     pokemon_name, pokemon_types, pokemon_url, reverse, reverse_record, row, search_array, search_bar, sort_by_id, sort_id, sort_method, sort_option, type, type_array, type_filter;
     
@@ -26,6 +26,7 @@ const get_all = 151;
 
 div = () => { return document.createElement('div'); }
 
+let menu_ball_lower = document.getElementById('mbLower');
 pokedex = document.querySelector('#pokedex');
 first_button = document.getElementById('firstPage');
 last_button = document.getElementById('lastPage');
@@ -173,6 +174,23 @@ get_form = (e) => {
     if (!check_load) {
         e.preventDefault();
     }
+    let mbl_margin = 500;
+    let n = 0;
+    let interval = setInterval(frame, 5);
+    function frame() {
+        if (n < 500) {
+            n++;
+            menu_ball_lower.style.marginTop = `${n}px`; 
+        } else if (n > 499) {
+            n += n;
+            menu_ball_lower.style.marginTop = `${n}px`; 
+        } else {
+            clearInterval(interval);
+        }
+    }
+    // setTimeout(newFunc , 10000)
+
+
     check_load = false;
     check_search = false;
     current_page = 1;
@@ -189,6 +207,7 @@ load_pokedex = (current_page, check_load, check_search) => {
     } else if (check_search) {
         limit = get_20; //change to get_all
     }
+
 
     pokemon_array = new Array();
     check_load = true;
@@ -273,13 +292,6 @@ set_limit = (limit, reverse, current_page) => {
 
 page_view = (limit, offset, reverse) => { //TESTING FOR BOOTSTRAP
     pokedex.innerHTML = '';
-    num_rows = (Math.ceil(limit / 5));
-
-    for (i = 0; i < num_rows; i++) {
-        row = div();
-        row.className = 'pokemonRow';
-        row.id = `row${i + 1}`;
-    }
     pokemon_list(limit, offset, reverse);
 }; 
 
@@ -383,9 +395,9 @@ sorter = (pokemon_array, reverse, limit) => {
 }
 
 append_pokemon = (pokemon_array, limit) => {
-    pokemon_array.forEach((p, i) => {
-        pokedex.append(p);
-    })
+    // let newFunc = () => pokemon_array.forEach((p, i) => {
+    //     pokedex.append(p);
+    // });
 }
 
 get_number_of_pages = (limit) => {
