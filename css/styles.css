@@ -1,4 +1,6 @@
 
+
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap');
 @import'classes.css';
 @import 'l-xl-styles.css';
 @import 'pokeBall.css';
@@ -29,6 +31,11 @@ select {
 }
 
 /* IDS */
+
+#directionLabel, #headerText, #searchBanner > span {
+    font-weight: 300;
+}
+
 #container {
     height: 100%;
 }
@@ -54,6 +61,7 @@ select {
 
 #headerText > span {
     color: #919191;
+    font-size: 28px;
     line-height: 60px;
 }
 
@@ -137,8 +145,10 @@ select {
     margin-bottom: 5px;
 }
 
-#searchLabelSpan {
+#searchLabel > span {
     color: #fff;
+    font-size: 28px;
+    font-weight: 300;
 }
 
 #selectGroup {
@@ -160,24 +170,58 @@ select {
     
 }
 
+
+
 .pokemonCard {
-    border: 3px solid #0b164e;
-    border-radius: 5px;
-    width: 100%;
+    border: 8px solid #0b164e;
+    border-radius: 4px;
+}
+
+.pokemonIdDiv {
+    color: #919191;
+    font-size: 12px;
+    font-weight: 600; 
+    margin: 2px 0 0 12px;
+}
+
+.pokemonName {
+    margin: 8px 0 0 12px;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .pokemonPhoto {
     background: #f2f2f2;
+    border-radius: 2px;
+    margin: 8px 8px 0;
+    width: 192px;
 }
 
-.pokemonType {
-    width: 50px;
+.pokemonPhoto > img {
+    margin: 8px auto 8px 12.5%;
+    width: 75%;
 }
 
-.type1 {
-    
-}    
+.pokemonTypes {
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 60px 8px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.type1, .type2 {
+    border-radius: 2px;
+    line-height: 18px;
+    width: 80px;
+    margin: auto 16px 0 0;
+}
 
 .type2 {
     
 } 
+.pokemonName::first-letter, .type1::first-letter, .type2::first-letter {
+    text-transform: capitalize;
+}
+

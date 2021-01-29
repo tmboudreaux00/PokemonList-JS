@@ -170,26 +170,74 @@ previous_page = (e) => {
     load_pokedex(current_page, check_load, check_search);
 }
 
+let check_open;
+let close_ball;
+let interval;
+let mbl_margin;
+let n;
+let new_mbl_margin;
+let num;
+let open_ball;
+let menu_ball_upper;
+menu_ball_upper = document.getElementById('mbUpper');
+
+check_open = false;
+
 get_form = (e) => {
     if (!check_load) {
         e.preventDefault();
     }
-    let mbl_margin = 500;
-    let n = 0;
-    let interval = setInterval(frame, 5);
-    function frame() {
-        if (n < 500) {
-            n++;
-            menu_ball_lower.style.marginTop = `${n}px`; 
-        } else if (n > 499) {
-            n += n;
-            menu_ball_lower.style.marginTop = `${n}px`; 
-        } else {
-            clearInterval(interval);
-        }
-    }
-    // setTimeout(newFunc , 10000)
 
+    if (!check_open) { 
+        open_ball = () => {
+            n = 0;
+            num = 0;
+            mbl_margin = 500; 
+            new_mbl_margin = 8264; //SOME VARIABLE YET TO BE DEFINED 8215 (+1)
+            interval = setInterval(frame, 5);
+            function frame() {
+                if (n < mbl_margin && num === 0) {
+                    num ++;
+                    menu_ball_upper.style.marginBottom = `${num}px`;
+                } else if (n < mbl_margin && num <= 24) {
+                    num++;
+         
+                    menu_ball_lower.style.marginTop = `${n}px`; 
+                } else if (n < mbl_margin && n > num) {
+                    n++;
+                    menu_ball_lower.style.marginTop = `${n}px`;
+               }  else if (n >= mbl_margin && n <= new_mbl_margin) {
+                    n += n;
+                    if (n >= new_mbl_margin) {
+                        n = new_mbl_margin;
+                    }
+                    menu_ball_lower.style.marginTop = `${n}px`; 
+                } else {
+                    clearInterval(interval);
+                }
+            }       
+            check_open = true;
+        }
+        open_ball();
+    } else if (check_open) {
+        close_ball = () => {
+            n = mbl_margin;
+            interval = setInterval(frame, 5);
+            function frame() {
+                    if (n > mbl_margin) {
+                        n -= n;
+                        menu_ball_lower.style.marginTop = `${n}px`; 
+                    } else if (n <= mbl_margin && n >= 0) {
+                        n--;
+                        menu_ball_lower.style.marginTop = `${n}px`; 
+                    } else {
+                        clearInterval(interval);
+                    }
+                }
+            check_open = false;
+        }
+        close_ball();
+    }
 
     check_load = false;
     check_search = false;
@@ -198,7 +246,6 @@ get_form = (e) => {
 }
 
 load_pokedex = (current_page, check_load, check_search) => {
-    console.log(reverse);
     limit = document.forms['getPokemonForm']['pokemonPerPage'].value;
 
     if (check_load) {
@@ -277,20 +324,7 @@ set_limit = (limit, reverse, current_page) => {
     page_view(new_limit, new_offset, reverse)
 }
 
-// page_view = (limit, offset, reverse) => {
-//     pokedex.innerHTML = '';
-//     num_rows = (Math.ceil(limit / 5));
-
-//     for (i = 0; i < num_rows; i++) {
-//         row = div();
-//         row.className = 'pokemonRow';
-//         row.id = `row${i + 1}`;
-//         pokedex.append(row);
-//     }
-//     pokemon_list(limit, offset, reverse);
-// }; 
-
-page_view = (limit, offset, reverse) => { //TESTING FOR BOOTSTRAP
+page_view = (limit, offset, reverse) => {
     pokedex.innerHTML = '';
     pokemon_list(limit, offset, reverse);
 }; 
@@ -314,15 +348,15 @@ throw_pokeball = (pokemon, reverse, limit) => {
         open_pokeball(pokemon_card_data, reverse, limit);
     });
 }
-
-open_pokeball = (pokemon_data, reverse, limit) => {
-                    
+let photo_url;
+open_pokeball = (pokemon_data, reverse, limit) => {  
+    
     pokemon_info = div();
     pokemon_info.className = `pokemonCard`;
 
     pokemon_card_photo = div();
     pokemon_card_photo.className = 'pokemonPhoto'
-    pokemon_card_photo_url = pokemon_data.sprites.front_default;
+    pokemon_card_photo_url = `https://pokeres.bastionbot.org/images/pokemon/${pokemon_data.id}.png`;
     pokemon_card_photo.innerHTML = `<img src="${pokemon_card_photo_url}" alt="photo of ${pokemon_data.name}" />`;
 
     pokemon_id = div();
@@ -337,7 +371,7 @@ open_pokeball = (pokemon_data, reverse, limit) => {
 
     pokemon_id.id = pokemon_id_num();
     pokemon_id.className = 'pokemonIdDiv';
-    pokemon_id.innerText = pokemon_id.id;
+    pokemon_id.innerText = `#${pokemon_id_num()}`;
     pokemon_info.id = 'pokemon' + pokemon_id.id;
     pokemon_name = div();
     pokemon_name.className = 'pokemonName';
@@ -347,7 +381,7 @@ open_pokeball = (pokemon_data, reverse, limit) => {
     name_array.push(pokemon_name.innerText);
 
     pokemon_types = div();
-    pokemon_types.className = 'pokemonTypesDiv';
+    pokemon_types.className = 'pokemonTypes';
 
     get_pokemon_type(pokemon_data.types, pokemon_types);
 
@@ -364,7 +398,7 @@ open_pokeball = (pokemon_data, reverse, limit) => {
 get_pokemon_type = (types, pokemon_types) => {
     types.forEach( (t, i) => {
         type = div();
-        type.className = `border-radius-5 pokemonType type${i + 1} ${t ['type']['name']}`;
+        type.className = `type${i + 1} ${t ['type']['name']}`;
         type.innerText = t ['type']['name'];
         pokemon_types.append(type);
         new_type_array.push(`${t ['type']['name']}`);
@@ -395,9 +429,9 @@ sorter = (pokemon_array, reverse, limit) => {
 }
 
 append_pokemon = (pokemon_array, limit) => {
-    // let newFunc = () => pokemon_array.forEach((p, i) => {
-    //     pokedex.append(p);
-    // });
+    pokemon_array.forEach((p) => {
+        pokedex.append(p);
+    });
 }
 
 get_number_of_pages = (limit) => {
@@ -418,11 +452,13 @@ disable_page_buttons = () => {
     previous_button.disabled = true;
 }
 
+
+
+
+
 window.onload = () => {
     disable_page_buttons();
 }
-
-//MOVE TO HTML
 
 load_button.addEventListener('click', get_form);
 next_button.addEventListener('click', next_page);
