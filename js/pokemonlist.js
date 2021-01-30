@@ -193,24 +193,14 @@ get_form = (e) => {
             n = 0;
             num = 0;
             mbl_margin = 500; 
-            new_mbl_margin = 8264; //SOME VARIABLE YET TO BE DEFINED 8215 (+1)
-            interval = setInterval(frame, 5);
+            new_mbl_margin = 8264; //SOME VARIABLE YET TO BE DEFINED 8215 (+1)//8215 no longer accurate
+            interval = setInterval(frame, 1000);
             function frame() {
-                if (n < mbl_margin && num === 0) {
-                    num ++;
-                    menu_ball_upper.style.marginBottom = `${num}px`;
-                } else if (n < mbl_margin && num <= 24) {
+                if (num <= 24) {
                     num++;
-         
-                    menu_ball_lower.style.marginTop = `${n}px`; 
-                } else if (n < mbl_margin && n > num) {
-                    n++;
-                    menu_ball_lower.style.marginTop = `${n}px`;
-               }  else if (n >= mbl_margin && n <= new_mbl_margin) {
-                    n += n;
-                    if (n >= new_mbl_margin) {
-                        n = new_mbl_margin;
-                    }
+                    menu_ball_upper.style.marginBottom = `${num}px`;
+                } else if (n < mbl_margin && num === 24) {
+                    n++
                     menu_ball_lower.style.marginTop = `${n}px`; 
                 } else {
                     clearInterval(interval);
@@ -219,25 +209,26 @@ get_form = (e) => {
             check_open = true;
         }
         open_ball();
-    } else if (check_open) {
-        close_ball = () => {
-            n = mbl_margin;
-            interval = setInterval(frame, 5);
-            function frame() {
-                    if (n > mbl_margin) {
-                        n -= n;
-                        menu_ball_lower.style.marginTop = `${n}px`; 
-                    } else if (n <= mbl_margin && n >= 0) {
-                        n--;
-                        menu_ball_lower.style.marginTop = `${n}px`; 
-                    } else {
-                        clearInterval(interval);
-                    }
-                }
-            check_open = false;
-        }
-        close_ball();
-    }
+    } 
+    // else if (check_open) {
+    //     close_ball = () => {
+    //         n = mbl_margin;
+    //         interval = setInterval(frame, 5);
+    //         function frame() {
+    //                 if (n > mbl_margin) {
+    //                     n -= n;
+    //                     menu_ball_lower.style.marginTop = `${n}px`; 
+    //                 } else if (n <= mbl_margin && n >= 0) {
+    //                     n--;
+    //                     menu_ball_lower.style.marginTop = `${n}px`; 
+    //                 } else {
+    //                     clearInterval(interval);
+    //                 }
+    //             }
+    //         check_open = false;
+    //     }
+    //     close_ball();
+    // }
 
     check_load = false;
     check_search = false;
@@ -452,7 +443,19 @@ disable_page_buttons = () => {
     previous_button.disabled = true;
 }
 
+let fib = num => {
+    let p = 0;
+    let n = 1;
+    let temp;
 
+    for (let i = 1; i < num; i++) {
+        temp = n;
+        n = p + n;
+        p = temp;
+    }
+    return n;
+}
+console.log(fib(10));
 
 
 
