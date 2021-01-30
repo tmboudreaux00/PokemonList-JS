@@ -94,8 +94,7 @@ select {
 }
 
 #pokemonPerPage {
-    border: 3px solid #313131;
-    height: 40px;
+    height: auto;
     width: 300px;
 }
 
@@ -166,11 +165,29 @@ select {
 
 /* ELEMENT CLASSES */
 
-.fillerCard {
-    
+#gottaCatch {
+    background: #313131;
+    border: 4px solid #000;
+    border-bottom: none;
+    border-radius: 2px;
+    color: #fff;
+    line-height: 40px;
 }
 
+#numSelector {
+    background: rgba(0, 0, 0, 0.6);
+    border-top, border-bottom: ;: 2px solid #000;
+    
+    margin: 0 auto;
+    width: 80%;
+}
 
+.ppgSelector {
+    background: #313131;
+    border: 2px solid #000;
+    color: #fff;
+    margin: 1px 8px;
+}
 
 .pokemonCard {
     border: 8px solid #0b164e;

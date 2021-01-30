@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+ <!-- <div id="customPokeBall">
+    <div id="cpbUpper">
+        <div id="cpbUpperBorder">
+            <div id="cpbUpperBorderEllipse">
+                <div id="cpbOutterButton">
+                    <button id="cpbInnerButton"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="cpbLower">
+        <div id="cpbLowerBorder"><div id="cpbLowerBorderEllipse"></div></div>
+    </div>  
+</div> -->
+
+
+<div id="menuPokeBall">
+    <div id="mbUpper">
+        <div id="mbUpperBorder">
+            <div id="mbUpperBorderEllipse">
+                <div id="mbOutterButton">
+                    <button id="mbInnerButton"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="border-radius-5" id="pokemonPerPage">
+        <div id="gottaCatch">Gotta catch...</div>
+        <div id="get10">10</div>
+        <div id="get20">20</div>
+        <div id="get50">50</div>
+        <div id="get100">100</div>
+        <div id="getAll">'em all!</div>
+    </div> -->
+
+    <div id="mbLower">
+        <div id="mbLowerBorder">
+            <div id="mbLowerBorderEllipse"></div>
+        </div>
+    </div>
+
+</div>
+
+<style>
+     
+#mbInnerButton {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #000;
+    height: 32px;
+    width: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(100% - 37px);
+    position: relative;
+    z-index: 6;
+}
+
+#mbInnerButton:focus {
+    outline: none;
+}
+
+#mbLower {
+    background: #fff;
+    height: 50%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#mbLowerBorder {
+    background: #313131;
+    height: 2px;
+    width: 300px;
+    top: ;
+    right: calc(50% - 150px);
+    position: relative;
+    z-index: 3;
+}
+    
+#mbLowerBorderEllipse {
+    background: #313131;
+    clip-path: ellipse(25% 25% at 50% 0%);
+    height: 100px;
+    width: 100px;
+    top: -2px;
+    right: calc(50px - 50%);
+    position: relative;
+    z-index: 4;
+}
+
+#mbOutterButton {
+    background: #fff;
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+    left: calc(50% - 42px/2);
+    top: calc(100% - 42px/2);
+    position: relative;
+    z-index: 5;
+}
+
+#mbUpper { 
+    background: #e3350c;
+    height: 50%;
+    width: 100%;
+    
+    position: relative;
+    z-index: 2;
+}
+    
+#mbUpperBorder {
+    background: #313131;
+    height: 2px;
+    width: 300px;
+    top: calc(50% + 13px);
+    right: calc(50% - 150px);
+    position: relative;
+    z-index: 3;
+}
+
+#mbUpperBorderEllipse {
+    background: #313131;
+    clip-path: ellipse(25% 25% at 50% 100%);
+    height: 100px;
+    width: 100px;
+    top: -100px;
+    right: calc(50px - 50%);
+    position: relative;
+    z-index: 4;
+}
+
+#menuPokeBall {
+    background: #3ec8f0;
+    border: 4px solid #313131;
+    border-radius: 5px;
+    height: 60px;
+    width: 300px;
+    position: absolute;
+    z-index: 1;
+}
+
+  
+#cpbInnerButton {
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #000;
+    height: 32px;
+    width: 32px;
+    left: calc(50% - 32px/2);
+    top: calc(100% - 37px);
+    position: relative;
+    z-index: 6;
+}
+
+#cpbInnerButton:focus {
+    outline: none;
+}
+
+#cpbLower {
+    background: #fff;
+    clip-path: ellipse(50% 50% at 50% 0%);
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#cpbLowerBorder {
+    background: #313131;
+    height: 2px;
+    width: 100px;
+    top: -2px;
+    position: relative;
+    z-index: 3;
+}
+    
+#cpbLowerBorderEllipse {
+    background: #313131;
+    clip-path: ellipse(25% 25% at 50% 0%);
+    height: 100px;
+    width: 100px;
+    
+    position: relative;
+    z-index: 4;
+}
+
+#cpbOutterButton {
+    background: #fff;
+    border-radius: 50%;
+    height: 42px;
+    width: 42px;
+    left: calc(50% - 42px/2);
+    top: calc(100% - 42px/2);
+    position: relative;
+    z-index: 5;
+}
+
+#cpbUpper { 
+    background: #e3350c;
+    clip-path: ellipse(50% 50% at 50% 100%);
+    margin-top: -50%;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+    
+#cpbUpperBorder {
+    background: #313131;
+    height: 2px;
+    width: 100px;
+    top: 98px;
+    position: relative;
+    z-index: 3;
+}
+
+#cpbUpperBorderEllipse {
+    background: #313131;
+    clip-path: ellipse(25% 25% at 50% 100%);
+    height: 100px;
+    width: 100px;
+    top: -100px;
+    position: relative;
+    z-index: 4;
+}
+
+#customPokeBall {
+    background: #3ec8f0;
+    border: 4px solid #313131;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    position: absolute;
+    z-index: 1;
+}
+
+
+
+
+</style>
+
+
+</body>
+</html>

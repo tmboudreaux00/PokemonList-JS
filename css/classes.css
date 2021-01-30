@@ -1,0 +1,156 @@
+
+/* STYLE CLASSES */
+
+.border-radius-5 {
+    border-radius: 5px;
+}
+
+.bg-color-dark {
+    background-color: #313131;
+}
+
+.bg-color-gray {
+    background-color: #616161;
+}
+
+.dev-border {
+    border: solid 1px black;
+}
+
+.flex-default {
+    display: flex;
+}
+
+.flex-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.font-18 {
+    font-size: 18px;
+}
+
+.font-20 {
+    font-size: 20px;
+}
+
+.font-24 {
+    font-size: 24px;
+}
+
+.font-28 {
+    font-size: 28px;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.j-c-between {
+    justify-content: space-between;
+}
+
+.j-c-start {
+    justify-content: flex-start;
+}
+
+.margin-x-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.margin-y-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+
+/* TYPE CLASSES */
+.bug, .dragon, .fire, .poison, .water  {
+    color: #fff;
+}
+
+.bug {
+    background: #73a040;
+    
+}
+
+.electric {
+    background: #eed535;
+}  
+
+.dragon {
+    background: linear-gradient(180deg, #52a4cf 50%, #f16e57 50%);
+}
+
+.fairy {
+    background: #fdbae9;
+}    
+
+.fighting {
+    background: #d56722
+}    
+
+.fire {
+    background: #fc7d23;
+}    
+
+.flying {
+    background: linear-gradient(180deg, #3ec8f0 50%, #bdbab9 50%);
+}    
+
+.ghost {
+    background: #7b62a3;
+}    
+
+.grass {
+    background: #9BCC50;
+}        
+
+.ground {
+    background: linear-gradient(180deg, #f7de40 50%, #ab9842 50%);
+}            
+
+.ice {
+    background: #50c3e7;
+}    
+
+.normal {
+    background: #a3acaf;
+}            
+
+.poison {
+    background: #B97FC8;
+}
+
+.psychic {
+    background: #f366b9;
+}                
+
+.rock {
+    background: #a38c20;
+}            
+
+.steel {
+    background: #9eb7b8;
+}    
+
+.water {
+    background: #4592c5;
+}
