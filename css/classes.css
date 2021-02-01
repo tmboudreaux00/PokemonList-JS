@@ -5,6 +5,10 @@
     border-radius: 5px;
 }
 
+.box-shadow-apex {
+    box-shadow: 0 6px 6px #000;
+}
+
 .bg-color-dark {
     background-color: #313131;
 }
