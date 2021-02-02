@@ -1,7 +1,8 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap');
-@import'classes.css';
+@import 'animations.css';
+@import 'classes.css';
 @import 'l-xl-styles.css';
 @import 'pokeBall.css';
 
@@ -52,7 +53,7 @@ select {
 }
 
 #getPokemonForm {
-    right: calc(950px - 50%);
+
 }
 
 #headerText {
@@ -63,6 +64,16 @@ select {
     color: #919191;
     font-size: 28px;
     line-height: 60px;
+}
+
+#headingWrapper, #resetWrapper {
+    display: flex;
+}
+
+#headingWrapper, #resetWrapper, #searchWrapper {
+       
+    position: relative;
+    z-index: 26;
 }
 
 #lowerLeftInnerBorder, #lowerRightInnerBorder, #pageButtonsLeftBorder, #pageButtonsRightBorder,#upperLeftInnerBorder, #upperRightInnerBorder {
@@ -95,7 +106,8 @@ select {
 
 #pokemonPerPage {
     height: auto;
-    width: 225px;
+    width: 240px;
+    position: relative;
 }
 
 
@@ -174,10 +186,8 @@ select {
 }
 
 #numArrow {
-
     position: absolute;
     left: calc(100% - 36px);  
-    z-index: 10;
 }
 
 #numArrowBlank {
@@ -188,18 +198,11 @@ select {
     position: relative;
     height: 6px;
     width: calc(100% - 36px);
-    z-index: 0;
 }
 
 #sort-down-2 {
     position: relative; 
     bottom: 8px
-}
-
-@keyframes flash {
-    25% {color: #111;}
-    50% {color: #bbb;}
-    25% {color: #111;}
 }
 
 #numArrow > i {
@@ -217,21 +220,39 @@ select {
 }
 
 #gottaCatch {
+    position: relative;
+    z-index: 27;
+}
+
+#gottaCatch {
     background: #313131;
     border: 4px solid #000;
     border-radius: 3px;
     color: #fff;
+    display: flex;
     line-height: 40px;
 }
 
-#numSelector, #selectArrowGroup {
-    margin: 0 8px 0 auto;
-    width: 40%;
+#gottaCatch span {
+    margin-left: 8px;
 }
 
-@keyframes rollDown {
-    from {bottom: 152px;}
-    to {bottom: 0px;}
+
+#numWindow {
+    animation: dashFlash 1s linear infinite;
+    background: #616161;
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow: 0 0 6px #000 inset;
+    line-height: 24px;
+    width: 90px;
+    margin: auto auto auto 22px;
+}
+
+#selectArrowGroup {
+    margin: 0 8px 0 auto;
+    position: relative;
+    width: 90px;
 }
 
 #numSelector {
@@ -239,15 +260,22 @@ select {
     height: 148px;
     padding-top: 8px; 
     position: relative;
-    bottom: 152px;  
+    width: 90px;
 }
 
-#selectArrowGroup {
-    position: relative;
-    bottom: 152px;
-    animation: rollDown 2s linear;
+#numAnimator {
+    position: absolute;
+    left: calc(50% + 10px);
+    top: -108px;
+    z-index: 25;
 }
 
+#pokedex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 0 0 0 11px;
+}
 #get10 {
 } 
 

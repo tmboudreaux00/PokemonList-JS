@@ -18,6 +18,9 @@ let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div,
     next_page, open_pokeball, page_view, 
     pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, sorter, throw_pokeball;   
 
+
+
+
 const get_10 = 10;
 const get_20 = 20;
 const get_50 = 50;
@@ -235,10 +238,32 @@ get_form = (e) => {
     current_page = 1;
     load_pokedex(current_page, check_load, check_search);
 }
+let this10 = document.getElementById('get10');
+
+let num_window = document.getElementById('numWindow');
+let num_selector = document.getElementById('numSelector');
+let num_animator = document.getElementById('numAnimator');
+let num_arrow = document.getElementById('numArrow');
+let roll_down_keyframes = new KeyframeEffect(
+    num_animator,
+    [
+        {top: '-108px'},
+        {top: '48px'}
+    ],
+    { duration: 2000}
+)
+let roll_down_animation = new Animation(roll_down_keyframes, document.timeline);
+num_arrow.addEventListener('click', clickEvent);
+
+function clickEvent(e) {
+    num_arrow.removeEventListener('click', clickEvent);
+    roll_down_animation.play();
+    num_arrow.addEventListener('click', clickEvent);
+    
+}
 
 load_pokedex = (current_page, check_load, check_search) => {
     limit = document.forms['getPokemonForm']['pokemonPerPage'].value;
-
     if (check_load) {
         reverse = reverse_record;
         limit = limit_record;

@@ -4,10 +4,6 @@
     CLOSED MARGIN WILL BE SET AS CARD HEIGHT + CARD MARGIN + CARD */
 }
 
-#pokedex {
-    display: flex;
-}
-
 #mbInnerButton {
     background: #fff;
     border-radius: 50%;
@@ -17,7 +13,7 @@
     left: calc(50% - 32px/2);
     top: calc(100% - 37px);
     position: relative;
-    z-index: 19;
+    z-index: 18;
 }
 
 #mbInnerButton:focus {
@@ -35,7 +31,7 @@
     margin-top: 0px; /* CHANGE IN JS FOR ANIMATION - 15px when open */
     position: relative;
     top: 0px;
-    z-index: 17;
+    z-index: 16;
 }
 
 #mbLowerBorder {
@@ -44,7 +40,7 @@
     width: calc(100% + 8px);
     right: 4px;
     position: relative;
-    z-index: 17;
+    z-index: 16;
 }
     
 #mbLowerBorderEllipse {
@@ -54,7 +50,7 @@
     width: 100px;
     right: calc(50px - 50%);
     position: relative;
-    z-index: 17;
+    z-index: 16;
 }
 
 #mbOutterButton {
@@ -65,7 +61,7 @@
     left: calc(50% - 42px/2);
     top: calc(100% - 42px/2);
     position: relative;
-    z-index: 17;
+    z-index: 16;
 }
 
 #mbUpper { 
@@ -78,7 +74,7 @@
     width: calc(100% - 8px);
     margin-bottom: 0px; /* CHANGE IN JS FOR ANIMATION - 25px WHEN OPEN */
     position: relative;
-    z-index: 18;
+    z-index: 17;
 }
     
 #mbUpperBorder {
@@ -88,7 +84,7 @@
     top: 100%;
     right: 4px;
     position: relative;
-    z-index: 18;
+    z-index: 17;
 }
 
 #mbUpperBorderEllipse {
@@ -99,7 +95,7 @@
     top: -100px;
     right: calc(50px - 50%);
     position: relative;
-    z-index: 18;
+    z-index: 17;
 }
 
 #menuPokeBall {
@@ -107,7 +103,7 @@
     margin-top: 24px;
     width: 950px;
     position: relative;
-    z-index: 10;
+    z-index: 15;
 }
 
 
