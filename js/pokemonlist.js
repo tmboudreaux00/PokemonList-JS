@@ -241,23 +241,23 @@ get_form = (e) => {
 let num_animator;
 let num_arrow;
 let num_selector;
-let num_window;
-let roll_down_keyframes;
-let roll_up_keyframes;
-let set_10;
-let set_20;
-let set_50;
-let set_100;
-let set_all;
-let numRoll; //function
-let roll_down_animation;
-let roll_up_animation;
+let num_val, num_window;
+
+let set_10, set_20, set_50, set_100, set_all;
+let set_num_val, num_roll; //function
+
 let num_open;
-let moving;
+let num_window_style;
+let op1;
 let top_num;
-let toggle_num_selector;
-let toggle_10, toggle_20, toggle_50, toggle_100; //funcs
-moving = false;
+set_num_val = (e) => {
+    num_val = e.target.attributes.value.value;
+    num_window.innerHTML = num_val;
+    num_window_style = document.styleSheets[0].rules[0].style;
+    console.log(num_window_style);
+    op1 = num_window_style.removeProperty('box-shadow');
+    return op1;
+}
 num_open = false;
 num_window = document.getElementById('numWindow');
 num_selector = document.getElementById('numSelector');
@@ -268,81 +268,56 @@ set_20 = document.getElementById('get20');
 set_50 = document.getElementById('get50');
 set_100 = document.getElementById('get100');
 set_all = document.getElementById('getAll');
-
-toggle_10 = () => {
-    if (num_open === false)
-        set_10.style.display = 'block';
-    else if (num_open === true) {
-        set_10.style.display = 'none';
-    }
-}
-
-toggle_20 = () => {
-    if (num_open === false)
-        set_20.style.display = 'block';
-    else if (num_open === true)
-        set_20.style.display = 'none';
-}
-
-toggle_50 = () => {
-    if (num_open === false)
-        set_50.style.display = 'block';
-    else if (num_open === true)
-        set_50.style.display = 'none';
-}
-
-toggle_100 = () => {
-    if (num_open === false)
-        set_100.style.display = 'block';
-    else if (num_open === true)
-        set_100.style.display = 'none';
-}
+set_10.addEventListener('click', set_num_val)
+set_20.addEventListener('click', set_num_val)
+set_50.addEventListener('click', set_num_val)
+set_100.addEventListener('click', set_num_val)
+set_all.addEventListener('click', set_num_val)
 
 
-toggle_num_selector = () => {
-    setTimeout(toggle_10, 500);
-    setTimeout(toggle_20, 1000);
-    setTimeout(toggle_50, 1500);
-    setTimeout(toggle_100, 2000);
-}
-numRoll = () => {
-    num_open = true;
-    console.log('click');
+num_roll = () => {
     top_num = getComputedStyle(num_animator).top;
-    // switch(!num_open) {
-    //     case (top_num === '12px'):
-    //         console.log(top_num + '1');
-    //         num_arrow.removeEventListener('click', numRoll);
-    //         roll_down_animation.play();
-    //         grow_num_animation.play();
-    //         toggle_num_selector();
-    //         num_animator.style.top = '148px';
-    //         num_open = true;
-    //         num_arrow.addEventListener('click', numRoll);
-    // }   
+    switch(!num_open) {
+        case (top_num === '-102px'):
+            num_arrow.removeEventListener('click', num_roll);
+            num_animator.animate(
+                [
+                    {top: '-102px'},
+                    {top: '48px'}
+                ], 
+                {
+                    duration: 2000,
+                }
+            );
+            setTimeout(function () {num_animator.style.top = '48px'}, 2000);
+            num_open = true;
+            setTimeout(function () {num_arrow.addEventListener('click', num_roll)}, 2000);
+    }   
     switch(num_open) {
-        case (1 < 2): 
-         
-            num_arrow.removeEventListener('click', numRoll);
+        case (top_num === '48px'): 
+            num_arrow.removeEventListener('click', num_roll);
             num_animator.animate(
                 [
                     {top: '48px'},
-                    {top: '-28px'}
+                    {top: '-102px'}
                 ], 
                 {
                     duration: 2000,
             
                 }
-            ).then(function () {num_animator.style.top = '-28px'})
-            // toggle_num_selector();
-            // setTimeout(function () {num_animator.style.top = '12px'}, 2000);
-           // num_open = false;
-            num_arrow.addEventListener('click', numRoll);
+            );
+            setTimeout(function () {num_animator.style.top = '-102px'}, 2000);
+            num_open = false;
+
+           setTimeout(function () {num_arrow.addEventListener('click', num_roll)}, 2000);
     }
 }
-num_arrow.addEventListener('click', numRoll);
+num_arrow.addEventListener('click', num_roll);
+
+
 load_pokedex = (current_page, check_load, check_search) => {
-    limit = document.forms['getPokemonForm']['pokemonPerPage'].value;
+    limit = document.forms['getPokemonForm']['numSelector'].value;
+    console.log(limit);
     if (check_load) {
         reverse = reverse_record;
         limit = limit_record;
