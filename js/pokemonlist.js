@@ -247,17 +247,21 @@ let set_10, set_20, set_50, set_100, set_all;
 let set_num_val, num_roll; //function
 
 let num_open;
-let num_window_style;
-let op1;
+let num_window_span;
+num_window_span = document.getElementById('numWindowSpan');
+let sort_val, sort_window, sort_window_span;
 let top_num;
+
 set_num_val = (e) => {
     num_val = e.target.attributes.value.value;
-    num_window.innerHTML = num_val;
-    num_window_style = document.styleSheets[0].rules[0].style;
-    console.log(num_window_style);
-    op1 = num_window_style.removeProperty('box-shadow');
-    return op1;
+    num_window_span.innerText = num_val;
+    num_window.classList.remove('numWindowAnimation');
 }
+// set_sort_val = (e) => {
+//     sort_val = e.target.attributes.value.value;
+//     sort_window_span.innerText = sort_val;
+//     sort_window.classList.remove('numWindowAnimation');
+// }
 num_open = false;
 num_window = document.getElementById('numWindow');
 num_selector = document.getElementById('numSelector');
@@ -273,43 +277,60 @@ set_20.addEventListener('click', set_num_val)
 set_50.addEventListener('click', set_num_val)
 set_100.addEventListener('click', set_num_val)
 set_all.addEventListener('click', set_num_val)
+let arrows = new Array();
+arrows = [document.getElementById('numDown1'), document.getElementById('numDown2')]; //document.getElementById('sortDown1') document.getElementById('sortDown2')
 
+let num_roll_up, num_roll_down;
+num_roll_down = () => {
+    num_arrow.removeEventListener('click', num_roll);
+    num_animator.animate(
+        [
+            {top: '-102px'},
+            {top: '48px'}
+        ], 
+        {
+            duration: 2000,
+        }
+    );
+    setTimeout(function () {arrows[0].classList.add('arrowRotateUpAnimation', 'arrowAdjustTopDownAnimation'), arrows[0].style = 'transform: rotate(180deg); top: 8px;'}, 1500);
+    setTimeout(function () {arrows[1].classList.add('arrowRotateUpAnimation', 'arrowAdjustBottomDownAnimation'), arrows[1].style = 'transform: rotate(180deg); top: 0px;'}, 1500);
+    setTimeout(function () {num_animator.style.top = '48px'}, 2000);
+    setTimeout(function () {arrows[0].classList.remove('arrowRotateUpAnimation', 'arrowAdjustTopDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[1].classList.remove('arrowRotateUpAnimation', 'arrowAdjustBottomDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
+    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {num_down_1.classList.add('arrowFlashAnimation')}, 2825);
+    num_open = true; 
+}   
+num_roll_up = () => {
+    num_arrow.removeEventListener('click', num_roll);
+    num_animator.animate(
+        [
+            {top: '48px'},
+            {top: '-102px'}
+        ], 
+        {
+            duration: 2000
+        }
+    );
+    setTimeout(function () {arrows[0].classList.add('arrowRotateDownAnimation', 'arrowAdjustTopUpAnimation'), arrows[0].style = 'transform: rotate(0deg); top: 0px;'}, 1500);
+    setTimeout(function () {arrows[1].classList.add('arrowRotateDownAnimation', 'arrowAdjustBottomUpAnimation'), arrows[1].style = 'transform: rotate(0deg); top: -8px;'}, 1500);
+    setTimeout(function () {num_animator.style.top = '-102px'}, 2000);
+    setTimeout(function () {arrows[0].classList.remove('arrowRotateDownAnimation', 'arrowAdjustTopUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[1].classList.remove('arrowRotateDownAnimation', 'arrowAdjustBottomUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
+    setTimeout(function () {num_down_1.classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 2825);
+    num_open = false;
+}
 
-num_roll = () => {
+num_roll = () => { 
+    
     top_num = getComputedStyle(num_animator).top;
-    switch(!num_open) {
-        case (top_num === '-102px'):
-            num_arrow.removeEventListener('click', num_roll);
-            num_animator.animate(
-                [
-                    {top: '-102px'},
-                    {top: '48px'}
-                ], 
-                {
-                    duration: 2000,
-                }
-            );
-            setTimeout(function () {num_animator.style.top = '48px'}, 2000);
-            num_open = true;
-            setTimeout(function () {num_arrow.addEventListener('click', num_roll)}, 2000);
-    }   
-    switch(num_open) {
-        case (top_num === '48px'): 
-            num_arrow.removeEventListener('click', num_roll);
-            num_animator.animate(
-                [
-                    {top: '48px'},
-                    {top: '-102px'}
-                ], 
-                {
-                    duration: 2000,
-            
-                }
-            );
-            setTimeout(function () {num_animator.style.top = '-102px'}, 2000);
-            num_open = false;
-
-           setTimeout(function () {num_arrow.addEventListener('click', num_roll)}, 2000);
+    if(!num_open) {
+        num_roll_down();        
+    } else if (num_open) {
+        num_roll_up();
     }
 }
 num_arrow.addEventListener('click', num_roll);
@@ -522,23 +543,23 @@ disable_page_buttons = () => {
     previous_button.disabled = true;
 }
 
-let fib = num => {
-    let p = 0;
-    let n = 1;
-    let temp;
-
-    for (let i = 1; i < num; i++) {
-        temp = n;
-        n = p + n;
-        p = temp;
-    }
-    return n;
+let flash_animations;
+let sort_down_1, sort_down_2;
+let num_down_1, num_down_2;
+num_down_1 = document.getElementById('numDown1');
+num_down_2 = document.getElementById('numDown2');
+sort_down_1 = document.getElementById('sortDown1');
+sort_down_2 = document.getElementById('sortDown2');
+flash_animations = () => {
+    num_window.classList.add('numWindowAnimation');
+    num_down_1.classList.add('arrowFlashAnimation');
+    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 125);
+    // sort_down_1.classList.add('numArrowAnimation');
+    // setTimeout(function () {sort_down_2.classList.add('numArrowAnimation')}, 125);
 }
-console.log(fib(10));
-
-
 
 window.onload = () => {
+    flash_animations();
     disable_page_buttons();
 }
 

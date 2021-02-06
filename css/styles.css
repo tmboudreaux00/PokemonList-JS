@@ -182,9 +182,8 @@ select {
 }
 /* ELEMENT CLASSES */
 
-.selectorArrow {
+.selectorArrowBox {
     background: linear-gradient(180deg, #616161, #515151);
- 
     height: 32px;
     width: 36px;
 }
@@ -204,19 +203,26 @@ select {
     width: calc(100% - 36px);
 }
 
-#sort-down-2 {
-    position: relative; 
-    bottom: 8px
+
+
+#numDown1, #sortDown1 {
+    
 }
 
-#numArrow > i {
-    animation-name: flash;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
+#numDown2, #sortDown2 {
+    top: -8px;
+}
+
+.selectorArrows {
     font-size: 28px;
     line-height: 0px;
+    position: relative;
     text-align: center;
     width: 100%;
+}
+
+#numWindowSpan {
+    margin-left: 8px;
 }
 
 #ppgLeftBorder, #ppgRightBorder {
@@ -242,16 +248,19 @@ select {
 }
 
 
+
 #numWindow {
-    animation: dashFlash 1s linear infinite;
     background: #616161;
     border: 1px solid #000;
     border-radius: 3px;
     box-shadow: 0 0 6px #000 inset;
     line-height: 24px;
     margin: auto auto auto 22px;
-    padding-left: 12px;
     width: 90px;
+}
+
+#numWindow > span {
+    margin-left: 12px;
 }
 
 #selectArrowGroup {
