@@ -279,11 +279,11 @@ num_roll_down = () => {
             duration: 2000,
         }
     );
-    setTimeout(function () {arrows[0].classList.add('arrowRotateUpAnimation', 'arrowAdjustTopDownAnimation'), arrows[0].style = 'transform: rotate(180deg); top: 8px;'}, 1500);
-    setTimeout(function () {arrows[1].classList.add('arrowRotateUpAnimation', 'arrowAdjustBottomDownAnimation'), arrows[1].style = 'transform: rotate(180deg); top: 0px;'}, 1500);
+    setTimeout(function () {arrows[0].classList.add('arrowRotateUpAnimation'), arrows[0].style = 'transform: rotate(180deg); top: 8px;'}, 1500);
+    setTimeout(function () {arrows[1].classList.add('arrowRotateUpAnimation'), arrows[1].style = 'transform: rotate(180deg); top: 0px;'}, 1500);
     setTimeout(function () {num_animator.style.top = '48px'}, 2000);
-    setTimeout(function () {arrows[0].classList.remove('arrowRotateUpAnimation', 'arrowAdjustTopDownAnimation', 'arrowFlashAnimation')}, 2750);
-    setTimeout(function () {arrows[1].classList.remove('arrowRotateUpAnimation', 'arrowAdjustBottomDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[0].classList.remove('arrowRotateUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[1].classList.remove('arrowRotateUpAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
     setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 2750);
     setTimeout(function () {arrows[0].classList.add('arrowFlashAnimation')}, 2825);
@@ -300,11 +300,11 @@ num_roll_up = () => {
             duration: 2000
         }
     );
-    setTimeout(function () {arrows[0].classList.add('arrowRotateDownAnimation', 'arrowAdjustTopUpAnimation'), arrows[0].style = 'transform: rotate(0deg); top: 0px;'}, 1500);
-    setTimeout(function () {arrows[1].classList.add('arrowRotateDownAnimation', 'arrowAdjustBottomUpAnimation'), arrows[1].style = 'transform: rotate(0deg); top: -8px;'}, 1500);
+    setTimeout(function () {arrows[0].classList.add('arrowRotateDownAnimation'), arrows[0].style = 'transform: rotate(0deg); top: 0px;'}, 1500);
+    setTimeout(function () {arrows[1].classList.add('arrowRotateDownAnimation'), arrows[1].style = 'transform: rotate(0deg); top: -8px;'}, 1500);
     setTimeout(function () {num_animator.style.top = '-102px'}, 2000);
-    setTimeout(function () {arrows[0].classList.remove('arrowRotateDownAnimation', 'arrowAdjustTopUpAnimation', 'arrowFlashAnimation')}, 2750);
-    setTimeout(function () {arrows[1].classList.remove('arrowRotateDownAnimation', 'arrowAdjustBottomUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[0].classList.remove('arrowRotateDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[1].classList.remove('arrowRotateDownAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
     setTimeout(function () {arrows[0].classList.add('arrowFlashAnimation')}, 2750);
     setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 2825);

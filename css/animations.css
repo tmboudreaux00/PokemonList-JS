@@ -8,49 +8,16 @@
     50% {color: #fff;}
 }
 @keyframes arrowRotateDown {
-    from {transform: rotate(180deg);}
-    to {transform: rotate(0deg);}
+    from {transform: rotate(180deg); transform-origin: 50% 50%;}
+    to {transform: rotate(0deg); transform-origin: 50% 50%;}
 }
 @keyframes arrowRotateUp {
-    from {transform: rotate(0deg);}
-    to {transform: rotate(180deg);}
-}
-@keyframes arrowAdjustBottomDown {
-    from {top: -8px;}
-    to {top: 0px;}
-}
-@keyframes arrowAdjustBottomUp {
-    from {top: 0px;}
-    to {top: -8px;}
-}
-
-@keyframes arrowAdjustTopDown {
-    from {top: 0px;}
-    to {top: 8px;}
-}
-@keyframes arrowAdjustTopUp {
-    from {top: 8px;}
-    to {top: 0px;}
+    from {transform: rotate(0deg); transform-origin: 50% 50%;}
+    to {transform: rotate(180deg); transform-origin: 50% 50%;}
 }
 
 .numWindowAnimation {
     animation: dashFlash 1s linear infinite;
-}
-
-.arrowAdjustBottomDownAnimation {
-    animation: arrowAdjustBottomDown 6s linear 1;
-}
-
-.arrowAdjustBottomUpAnimation {
-    animation: arrowAdjustBottomUp 6s linear 1;
-}
-
-.arrowAdjustTopDownAnimation {
-    animation: arrowAdjustTopDown 6s linear 1;
-}
-
-.arrowAdjustTopUpAnimation {
-    animation: arrowAdjustTopUp 6s linear 1;  
 }
 
 .arrowFlashAnimation {
