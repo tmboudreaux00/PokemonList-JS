@@ -15,11 +15,13 @@ let arr1, arr2, check_load, check_search, class_pokemonCard, class_pokemonIdDiv,
 //FUNC INIT
 let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div, first_page, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, last_page, load_button, 
     load_pokedex,
-    next_page, open_pokeball, page_view, 
-    pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, sorter, throw_pokeball;   
-
-
-
+    next_page, num_roll, num_roll_up, num_roll_down, open_pokeball, page_view, 
+    pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, set_num_val, sorter, throw_pokeball;   
+    
+    
+    let num_animator, num_arrow, num_open, num_selector, num_val, num_window, num_window_span
+    
+    let set_10, set_20, set_50, set_100, set_all, sort_val, sort_window, sort_window_span, top_num;
 
 const get_10 = 10;
 const get_20 = 20;
@@ -30,21 +32,34 @@ const get_all = 151;
 div = () => { return document.createElement('div'); }
 
 let menu_ball_lower = document.getElementById('mbLower');
-pokedex = document.querySelector('#pokedex');
 first_button = document.getElementById('firstPage');
 last_button = document.getElementById('lastPage');
 load_button = document.getElementById('mbInnerButton');
 next_button = document.getElementById("nextPage");
+num_animator = document.getElementById('numAnimator');
+num_arrow = document.getElementById('numArrow');
+num_selector = document.getElementById('numSelector');
+num_window = document.getElementById('numWindow');
+num_window_span = document.getElementById('numWindowSpan');
+pokedex = document.getElementById('pokedex');
 previous_button = document.getElementById("previousPage");
-
 search_bar = document.getElementById('searchBar');
+set_10 = document.getElementById('get10');
+set_20 = document.getElementById('get20');
+set_50 = document.getElementById('get50');
+set_100 = document.getElementById('get100');
+set_all = document.getElementById('getAll');
+
+
 
 sort_by_id = 'id';
 
 current_page = 1;
 number_of_pages = 1;
+
 check_load = false;
 check_search = false;
+num_open = false;
 reverse = false;
 
 id_array = new Array();
@@ -238,19 +253,7 @@ get_form = (e) => {
     current_page = 1;
     load_pokedex(current_page, check_load, check_search);
 }
-let num_animator;
-let num_arrow;
-let num_selector;
-let num_val, num_window;
 
-let set_10, set_20, set_50, set_100, set_all;
-let set_num_val, num_roll; //function
-
-let num_open;
-let num_window_span;
-num_window_span = document.getElementById('numWindowSpan');
-let sort_val, sort_window, sort_window_span;
-let top_num;
 
 set_num_val = (e) => {
     num_val = e.target.attributes.value.value;
@@ -262,25 +265,7 @@ set_num_val = (e) => {
 //     sort_window_span.innerText = sort_val;
 //     sort_window.classList.remove('numWindowAnimation');
 // }
-num_open = false;
-num_window = document.getElementById('numWindow');
-num_selector = document.getElementById('numSelector');
-num_animator = document.getElementById('numAnimator');
-num_arrow = document.getElementById('numArrow');
-set_10 = document.getElementById('get10');
-set_20 = document.getElementById('get20');
-set_50 = document.getElementById('get50');
-set_100 = document.getElementById('get100');
-set_all = document.getElementById('getAll');
-set_10.addEventListener('click', set_num_val)
-set_20.addEventListener('click', set_num_val)
-set_50.addEventListener('click', set_num_val)
-set_100.addEventListener('click', set_num_val)
-set_all.addEventListener('click', set_num_val)
-let arrows = new Array();
-arrows = [document.getElementById('numDown1'), document.getElementById('numDown2')]; //document.getElementById('sortDown1') document.getElementById('sortDown2')
 
-let num_roll_up, num_roll_down;
 num_roll_down = () => {
     num_arrow.removeEventListener('click', num_roll);
     num_animator.animate(
@@ -570,7 +555,11 @@ first_button.addEventListener('click', first_page);
 last_button.addEventListener('click', last_page);
 search_bar.addEventListener('click', search_init);
 search_bar.addEventListener('keyup', search_pokemon)
-
+set_10.addEventListener('click', set_num_val)
+set_20.addEventListener('click', set_num_val)
+set_50.addEventListener('click', set_num_val)
+set_100.addEventListener('click', set_num_val)
+set_all.addEventListener('click', set_num_val)
     /** 
  * Get the list of Pokemon from the pokemon api ​https://pokeapi.co/
  * Should have a screen that lists pokemon in a Grid Style

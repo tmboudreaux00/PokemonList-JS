@@ -63,6 +63,7 @@
 
                         <div class="flex-default j-c-between" id="selectGroup">
                             <div id="limitGroup">
+
                                 <div id="pokemonPerPage">
                                     <div id="gottaCatch">
                                         <div><span>Gotta catch...</span></div>
@@ -85,15 +86,33 @@
                                         </div>
                                     </div>
                                 </div>
+                                
                             </div>
 
                             <div id="sortGroup">
-                                <select class="" name="sort" id="sort">
-                                    <option id="ascendNum" value="highestNumber"><span class="sortIcon">Icon </span><span>Lowest Number</span></option>
-                                    <option id ="descendNum" value="lowestNumber"><span class="sortIcon">Icon </span><span>Highest Number</span></option>
-                                    <option id="ascendAlpha" value="" disabled="disabled"><span class="sortIcon">Icon </span><span>A - Z</span></option>
-                                    <option id ="descendAlpha" value="" disabled="disabled"><span class="sortIcon">Icon </span><span>Z - A</span></option>
-                                </select>
+
+                                <div id="sort">
+                                    <div id="sorter">
+                                        <div><span>Sort by...</span></div>
+                                        <div id="sortWindow"><span id="sortWindowSpan">-----</span></div>
+                                    </div>
+                                    <div id="sortAnimator">
+                                        <div class="box-shadow-apex" name="sortSelector" id="sortSelector">
+                                            <option id="ascendNum" value="highestNumber"><span class="sortIcon">Icon </span><span>Lowest Number</span></option>
+                                            <option id ="descendNum" value="lowestNumber"><span class="sortIcon">Icon </span><span>Highest Number</span></option>
+                                            <option id="ascendAlpha" value="firstLetter" disabled="disabled"><span class="sortIcon">Icon </span><span>A - Z</span></option>
+                                            <option id ="descendAlpha" value="lastLetter" disabled="disabled"><span class="sortIcon">Icon </span><span>Z - A</span></option>
+                                        </div>
+                                        <div class="flex-default" id="selectArrowGroup"> 
+                                            <div id="sortArrowBlank"></div>
+                                            <div class="selectorArrowBox box-shadow-apex" id="sortArrow">
+                                                <i class="selectorArrows fas fa-sort-down" id="sortDown1"></i>
+                                                <i class="selectorArrows fas fa-sort-down" id="sortDown2"></i>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div>
                         </div>
 
