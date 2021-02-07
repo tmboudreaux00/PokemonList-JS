@@ -1,0 +1,17 @@
+#lowerLeftInnerBorder, #lowerRightInnerBorder, #pageButtonsLeftBorder, #pageButtonsRightBorder,#upperLeftInnerBorder, #upperRightInnerBorder {
+    background-color: red;
+    min-width: 50px;
+}
+
+#midLeftInnerBorder, #midRightInnerBorder {
+    background: #313131;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+#leftOutterBorder, #rightOutterBorder {
+    background-color: black;
+    min-width: 1px;
+    width: 100%;
+}
+

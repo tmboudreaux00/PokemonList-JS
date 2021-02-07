@@ -14,32 +14,34 @@
 <body>
     <div style="height: 50px; text-align: center;">Navbar Placeholder</div>
 
-    <div class="flex-default" id="container">
+    <div id="container">
         <div id="leftOutterBorder"></div><!-- LEFT OUTTER BORDER -->
         
         <div>
             <div id="headingWrapper"><!-- HEADING WRAPPER -->
                 <div id="upperLeftInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
                 <div id="headerText">
-                    <span class="">Kanto Pokédex</span>
+                    <span>Kanto Pokédex</span>
                 </div>
                 <div id="upperRightInnerBorder"></div><!-- UPPER LEFT INNER BORDER -->
             </div>
                         
-            <div class="flex-default" id="searchWrapper"><!-- SEARCH WRAPPER -->
+            <div id="searchWrapper"><!-- SEARCH WRAPPER -->
                 <div id="midLeftInnerBorder"></div><!-- MID LEFT INNER BORDER -->
            
-                <div class="flex-default j-c-between" id="searchGroup">
-                    <div class="searchBarGroup">
+                <div id="searchGroup">
+                    <div>
                         <div id="searchLabel">
                             <span>Name, Number or Type</span>
                         </div>
-                        <div class="">
-                            <input class="border-radius-5 font-20" type="text" id="searchBar">
+                        <div>
+                            <input type="text" id="searchBar">
                         </div>
-                        <div class="font-18" id="directionLabel">Filter and sort a list below!</div>
+                        <div id="directionLabel">
+                            <span>Filter and sort a list below!</span>
+                        </div>
                     </div>
-                    <div class="font-20" id="searchBanner">
+                    <div id="searchBanner">
                         <span>Search for a Pokémon by name, type or using its National Pokédex number.</span>
                     </div>
                 </div>    
@@ -55,29 +57,32 @@
                 <div id="resetRightBorder"></div><!-- RESET RIGHT BORDER -->
             </div>
 
-            <div class="flex-default" id="pageContent"><!--  MAIN CONTENT -->
+            <div id="pageContent"><!--  MAIN CONTENT -->
                 <div id="lowerLeftInnerBorder"></div><!-- LOWER LEFT INNER BORDER -->
-                <form class="width-100" name="getPokemonForm" id="getPokemonForm">
+                <form name="getPokemonForm" id="getPokemonForm">
                     <div id="spacer"></div>
                     <div>
-
-                        <div class="flex-default j-c-between" id="selectGroup">
+                        <div id="selectGroup">
                             <div id="limitGroup">
 
                                 <div id="pokemonPerPage">
                                     <div id="gottaCatch">
-                                        <div><span>Gotta catch...</span></div>
-                                        <div id="numWindow"><span id="numWindowSpan">-----</span></div>
+                                        <div>
+                                            <span>Gotta catch...</span>
+                                        </div>
+                                        <div id="numWindow">
+                                            <span id="numWindowSpan">-----</span>
+                                        </div>
                                     </div>
                                     <div id="numAnimator">
-                                        <div class="box-shadow-apex" name="numSelector" id="numSelector">
+                                        <div name="numSelector" id="numSelector">
                                             <option class="ppgSelector" id="get10" value="10">10</option>
                                             <option class="ppgSelector" id="get20" value="20">20</option>
                                             <option class="ppgSelector" id="get50" value="50">50</option>
                                             <option class="ppgSelector" id="get100" value="100">100</option>
                                             <option class="ppgSelector" id="getAll" value="'em all!">'em all!</option>
                                         </div>
-                                        <div class="flex-default" id="selectArrowGroup"> 
+                                        <div class="selectArrowGroup"> 
                                             <div id="numArrowBlank"></div>
                                             <div class="selectorArrowBox box-shadow-apex" id="numArrows">
                                                 <i class="selectorArrows fas fa-sort-down" id="numArrow1"></i>
@@ -90,22 +95,37 @@
                             </div>
 
                             <div id="sortGroup">
-
                                 <div id="sort">
                                     <div id="sorter">
-                                        <div><span>Sort by...</span></div>
-                                        <div id="sortWindow"><span id="sortWindowSpan">-----</span></div>
+                                        <div>
+                                            <span>Sort by...</span>
+                                        </div>
+                                        <div id="sortWindow">
+                                            <span id="sortWindowSpan">-----</span>
+                                        </div>
                                     </div>
                                     <div id="sortAnimator">
-                                        <div class="box-shadow-apex" name="sortSelector" id="sortSelector">
-                                            <option id="ascendNum" value="highestNumber"><span class="sortIcon">Icon </span><span>Lowest Number</span></option>
-                                            <option id ="descendNum" value="lowestNumber"><span class="sortIcon">Icon </span><span>Highest Number</span></option>
-                                            <option id="ascendAlpha" value="firstLetter" disabled="disabled"><span class="sortIcon">Icon </span><span>A - Z</span></option>
-                                            <option id ="descendAlpha" value="lastLetter" disabled="disabled"><span class="sortIcon">Icon </span><span>Z - A</span></option>
+                                        <div name="sortSelector" id="sortSelector">
+                                            <option id="ascendNum" value="highestNumber">
+                                                <span class="sortIcon">Icon </span>
+                                                <span>Lowest Number</span>
+                                            </option>
+                                            <option id ="descendNum" value="lowestNumber">
+                                                <span class="sortIcon">Icon </span>
+                                                <span>Highest Number</span>
+                                            </option>
+                                            <option id="ascendAlpha" value="firstLetter" disabled="disabled">
+                                                <span class="sortIcon">Icon </span>
+                                                <span>A - Z</span>
+                                            </option>
+                                            <option id ="descendAlpha" value="lastLetter" disabled="disabled">
+                                                <span class="sortIcon">Icon </span>
+                                                <span>Z - A</span>
+                                            </option>
                                         </div>
-                                        <div class="flex-default" id="selectArrowGroup"> 
+                                        <div class="selectArrowGroup"> 
                                             <div id="sortArrowBlank"></div>
-                                            <div class="selectorArrowBox box-shadow-apex" id="sortArrows">
+                                            <div class="selectorArrowBox" id="sortArrows">
                                                 <i class="selectorArrows fas fa-sort-down" id="sortArrow1"></i>
                                                 <i class="selectorArrows fas fa-sort-down" id="sortArrow2"></i>
                                             </div>   

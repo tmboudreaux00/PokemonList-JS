@@ -1,0 +1,229 @@
+#selectGroup {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#spacer {
+    background-color: #fff;
+    height: 48px;
+    position: relative;
+    width: 100%;
+    z-index: 26;
+}
+/* ELEMENT CLASSES */
+
+.selectorArrowBox {
+    background: linear-gradient(180deg, #616161, #515151);
+    box-shadow: 0 6px 6px #000;
+    height: 32px;
+    width: 36px;
+}
+
+#numArrows, #sortArrows {
+    position: absolute;
+    left: calc(100% - 36px);  
+}
+
+#numArrowBlank {
+    border-top: 2px solid #616161;
+    border-right: 1px solid #616161;
+    border-top-right-radius: 3px;
+    bottom: 1px;
+    position: relative;
+    height: 6px;
+    width: calc(100% - 36px);
+}
+
+#sortArrowBlank {
+    border-top: 2px solid #616161;
+    border-right: 1px solid #616161;
+    border-top-right-radius: 3px;
+    bottom: 1px;
+    position: relative;
+    height: 6px;
+    width: calc(100% - 36px);
+}
+
+
+
+#numArrow1, #sortArrow1 {
+    
+}
+
+#numArrow2, #sortArrow2 {
+    top: -8px;
+}
+
+.selectorArrows {
+    font-size: 28px;
+    line-height: 0px;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+#numWindowSpan {
+    margin-left: 12px;
+}
+
+#gottaCatch, #sorter {
+    background: #313131;
+    border: 4px solid #000;
+    border-radius: 3px;
+    color: #fff;
+    display: flex;
+    line-height: 40px;
+    position: relative;
+    z-index: 28;
+}
+
+#sorter {
+    width: 300px;
+}
+
+#gottaCatch span, #sorter span {
+    margin-left: 8px;
+}
+
+#numWindow {
+    background: #616161;
+    border: 1px solid #000;
+    border-radius: 3px;
+    box-shadow: 0 0 6px #000 inset;
+    line-height: 24px;
+    margin: auto auto auto 22px;
+    width: 90px;
+}
+
+.selectArrowGroup {
+    display: flex;
+    margin: 0 8px 0 auto;
+    position: relative;
+    width: 90px;
+}
+
+#numSelector, #sortSelector {
+    box-shadow: 0 6px 6px #000;
+    background: linear-gradient(180deg, #414141, #616161);
+    padding-top: 8px; 
+    position: relative;
+}
+
+#numSelector {
+    width: 90px;
+}
+
+#sortSelector {
+    width: 90px;
+}
+
+#numAnimator {
+    top: -102px;
+    left: calc(50% + 10px);
+    position: absolute;
+    z-index: 25;
+}
+
+#pokedex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    padding: 0 0 0 11px;
+}
+
+.ppgSelector {
+    color: #fff;
+    cursor: pointer;
+    line-height: 28px;
+    margin: 0 8px;
+    padding-left: 5px;
+}
+
+.ppgSelector:hover {
+    background: #212121;
+    border-radius: 3px;
+}
+
+.pokemonCard {
+    border: 8px solid #0b164e;
+    border-radius: 4px;
+}
+
+.pokemonIdDiv {
+    color: #919191;
+    font-size: 12px;
+    font-weight: 600; 
+    margin: 2px 0 0 12px;
+}
+
+.pokemonName {
+    margin: 8px 0 0 12px;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.pokemonPhoto {
+    background: #f2f2f2;
+    border-radius: 2px;
+    margin: 8px 8px 0;
+    width: 192px;
+}
+
+.pokemonPhoto > img {
+    margin: 8px auto 8px 12.5%;
+    width: 75%;
+}
+
+.pokemonTypes {
+    font-size: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 60px 8px 0;
+    text-align: center;
+    width: 100%;
+}
+
+.type1, .type2 {
+    border-radius: 2px;
+    line-height: 18px;
+    width: 80px;
+    margin: auto 16px 0 0;
+}
+
+.type2 {
+    
+} 
+.pokemonName::first-letter, .type1::first-letter, .type2::first-letter {
+    text-transform: capitalize;
+}
+
+#pageButtonsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#pageControllers {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 65px;
+    margin-bottom: 5px;
+    width: 950px;
+}
+
+#pageContent {
+    display: flex;
+    min-height: 50vh;
+}
+
+#pokemonPerPage {
+    height: auto;
+    width: 240px;
+    position: relative;
+}
+
+#getPokemonForm, #pageControllers  {
+    padding-left: 25px;
+    padding-right: 25px;
+}
