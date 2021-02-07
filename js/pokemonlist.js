@@ -18,7 +18,7 @@ let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div,
     next_page, num_roll, num_roll_up, num_roll_down, open_pokeball, page_view, 
     pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, set_num_val, sorter, throw_pokeball;   
     
-    
+
     let num_animator, num_arrow, num_open, num_selector, num_val, num_window, num_window_span
     
     let set_10, set_20, set_50, set_100, set_all, sort_val, sort_window, sort_window_span, top_num;
@@ -37,7 +37,7 @@ last_button = document.getElementById('lastPage');
 load_button = document.getElementById('mbInnerButton');
 next_button = document.getElementById("nextPage");
 num_animator = document.getElementById('numAnimator');
-num_arrow = document.getElementById('numArrow');
+num_arrow = document.getElementById('numArrows');
 num_selector = document.getElementById('numSelector');
 num_window = document.getElementById('numWindow');
 num_window_span = document.getElementById('numWindowSpan');
@@ -61,6 +61,8 @@ check_load = false;
 check_search = false;
 num_open = false;
 reverse = false;
+
+let arrows = [document.getElementById('numArrow1'), document.getElementById('numArrow2'), document.getElementById('sortArrow1'), document.getElementById('sortArrow2')];
 
 id_array = new Array();
 name_array = new Array();
@@ -283,8 +285,8 @@ num_roll_down = () => {
     setTimeout(function () {arrows[0].classList.remove('arrowRotateUpAnimation', 'arrowAdjustTopDownAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {arrows[1].classList.remove('arrowRotateUpAnimation', 'arrowAdjustBottomDownAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
-    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 2750);
-    setTimeout(function () {num_down_1.classList.add('arrowFlashAnimation')}, 2825);
+    setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[0].classList.add('arrowFlashAnimation')}, 2825);
     num_open = true; 
 }   
 num_roll_up = () => {
@@ -304,8 +306,8 @@ num_roll_up = () => {
     setTimeout(function () {arrows[0].classList.remove('arrowRotateDownAnimation', 'arrowAdjustTopUpAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {arrows[1].classList.remove('arrowRotateDownAnimation', 'arrowAdjustBottomUpAnimation', 'arrowFlashAnimation')}, 2750);
     setTimeout(function () {num_arrow.addEventListener('click', num_roll);}, 2750);
-    setTimeout(function () {num_down_1.classList.add('arrowFlashAnimation')}, 2750);
-    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 2825);
+    setTimeout(function () {arrows[0].classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 2825);
     num_open = false;
 }
 
@@ -529,18 +531,13 @@ disable_page_buttons = () => {
 }
 
 let flash_animations;
-let sort_down_1, sort_down_2;
-let num_down_1, num_down_2;
-num_down_1 = document.getElementById('numDown1');
-num_down_2 = document.getElementById('numDown2');
-sort_down_1 = document.getElementById('sortDown1');
-sort_down_2 = document.getElementById('sortDown2');
+
 flash_animations = () => {
     num_window.classList.add('numWindowAnimation');
-    num_down_1.classList.add('arrowFlashAnimation');
-    setTimeout(function () {num_down_2.classList.add('arrowFlashAnimation')}, 125);
-    // sort_down_1.classList.add('numArrowAnimation');
-    // setTimeout(function () {sort_down_2.classList.add('numArrowAnimation')}, 125);
+    arrows[0].classList.add('arrowFlashAnimation');
+    setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 125);
+    arrows[2].classList.add('numArrowAnimation');
+    setTimeout(function () {arrows[3].classList.add('numArrowAnimation')}, 125);
 }
 
 window.onload = () => {

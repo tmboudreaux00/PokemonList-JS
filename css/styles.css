@@ -188,7 +188,7 @@ select {
     width: 36px;
 }
 
-#numArrow {
+#numArrows, #sortArrows {
     position: absolute;
     left: calc(100% - 36px);  
 }
@@ -205,11 +205,11 @@ select {
 
 
 
-#numDown1, #sortDown1 {
+#numArrow1, #sortArrow1 {
     
 }
 
-#numDown2, #sortDown2 {
+#numArrow2, #sortArrow2 {
     top: -8px;
 }
 
