@@ -16,16 +16,7 @@
 }
 
 /* @1024 min-width: 1px; */
-#leftOutterBorder, #rightOutterBorder {
-    background-color: black;
-    min-width: 1px;
-    width: 100%;
-}
-
-
-#lowerLeftInnerBorder, #lowerRightInnerBorder, #midLeftInnerBorder, #midRightInnerBorder, #pageButtonsLeftBorder, #pageButtonsRightBorder, #upperLeftInnerBorder, #upperRightInnerBorder {
-    width: 200px;
-}
+ 
 
 #pagesLeft {
     margin-left: 75px;

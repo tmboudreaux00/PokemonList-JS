@@ -130,7 +130,7 @@
 /* SORT POKEMON */
 
 #sortAnimator {
-    top: 0px;
+    top: -73px;
     left: calc(50% - 20px);
     position: absolute;
     z-index: 25;

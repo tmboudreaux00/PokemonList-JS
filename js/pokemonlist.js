@@ -13,15 +13,15 @@ let arr1, arr2, check_load, check_search, class_pokemonCard, class_pokemonIdDiv,
     pokemon_name, pokemon_types, pokemon_url, reverse, reverse_record, row, search_array, search_bar, sort_by_id, sort_id, sort_method, sort_option, type, type_array, type_filter;
     
 //FUNC INIT
-let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div, first_page, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, last_page, load_button, 
+let append_pokemon, ascend_list, check, descend_list, disable_page_buttons, div, first_page, flash_animations, get_form, get_number_of_pages, get_pokemon, get_pokemon_type, last_page, load_button, 
     load_pokedex,
     next_page, num_roll, num_roll_up, num_roll_down, open_pokeball, page_view, 
     pokemon_add_class, pokemon_remove_class, pokemon_id_num, pokemon_list, previous_page, search_init, search_pokemon, set_limit, set_num_val, sorter, throw_pokeball;   
     
 
-    let num_animator, num_arrow, num_open, num_selector, num_val, num_window, num_window_span
+    let num_animator, num_arrow, num_open, num_val, num_window, num_window_span
     
-    let set_10, set_20, set_50, set_100, set_all, sort_val, sort_window, sort_window_span, top_num;
+    let set_10, set_20, set_50, set_100, set_all, set_sort_val, sort_animator, sort_arrow, sort_ascend_alpha, sort_ascend_num, sort_descend_alpha, sort_descend_num, sort_open, sort_roll, sort_roll_down, sort_roll_up, sort_val, sort_window, sort_window_span, top_num, top_sort;
 
 const get_10 = 10;
 const get_20 = 20;
@@ -38,7 +38,6 @@ load_button = document.getElementById('mbInnerButton');
 next_button = document.getElementById("nextPage");
 num_animator = document.getElementById('numAnimator');
 num_arrow = document.getElementById('numArrows');
-num_selector = document.getElementById('numSelector');
 num_window = document.getElementById('numWindow');
 num_window_span = document.getElementById('numWindowSpan');
 pokedex = document.getElementById('pokedex');
@@ -50,6 +49,15 @@ set_50 = document.getElementById('get50');
 set_100 = document.getElementById('get100');
 set_all = document.getElementById('getAll');
 
+
+sort_animator = document.getElementById('sortAnimator');
+sort_arrow = document.getElementById('sortArrows');
+sort_ascend_num = document.getElementById('ascendNum');
+sort_ascend_alpha = document.getElementById('ascendAlpha');
+sort_descend_num = document.getElementById('descendNum');
+sort_descend_alpha = document.getElementById('descendAlpha');
+sort_window = document.getElementById('sortWindow');
+sort_window_span = document.getElementById('sortWindowSpan');
 
 
 sort_by_id = 'id';
@@ -262,11 +270,11 @@ set_num_val = (e) => {
     num_window_span.innerText = num_val;
     num_window.classList.remove('numWindowAnimation');
 }
-// set_sort_val = (e) => {
-//     sort_val = e.target.attributes.value.value;
-//     sort_window_span.innerText = sort_val;
-//     sort_window.classList.remove('numWindowAnimation');
-// }
+set_sort_val = (e) => {
+    sort_val = e.target.attributes.value.value;
+    sort_window_span.innerText = sort_val;
+    sort_window.classList.remove('sortWindowAnimation');
+}
 
 num_roll_down = () => {
     num_arrow.removeEventListener('click', num_roll);
@@ -321,6 +329,77 @@ num_roll = () => {
     }
 }
 num_arrow.addEventListener('click', num_roll);
+
+
+/* CONSTRUCTION */
+
+sort_roll_down = () => {
+    sort_arrow.removeEventListener('click', sort_roll);
+    sort_animator.animate(
+        [
+            {top: '-73px'},
+            {top: '48px'}
+        ], 
+        {
+            duration: 2000,
+        }
+    );
+    setTimeout(function () {arrows[2].classList.add('arrowRotateUpAnimation'), arrows[2].style = 'transform: rotate(180deg); top: 8px;'}, 1500);
+    setTimeout(function () {arrows[3].classList.add('arrowRotateUpAnimation'), arrows[3].style = 'transform: rotate(180deg); top: 0px;'}, 1500);
+    setTimeout(function () {sort_animator.style.top = '48px'}, 2000);
+    setTimeout(function () {arrows[2].classList.remove('arrowRotateUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[3].classList.remove('arrowRotateUpAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {sort_arrow.addEventListener('click', sort_roll);}, 2750);
+    setTimeout(function () {arrows[2].classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[3].classList.add('arrowFlashAnimation')}, 2825);
+    sort_open = true; 
+}   
+sort_roll_up = () => {
+    sort_arrow.removeEventListener('click', sort_roll);
+    sort_animator.animate(
+        [
+            {top: '48px'},
+            {top: '-73px'}
+        ], 
+        {
+            duration: 2000
+        }
+    );
+    setTimeout(function () {arrows[2].classList.add('arrowRotateDownAnimation'), arrows[2].style = 'transform: rotate(0deg); top: 0px;'}, 1500);
+    setTimeout(function () {arrows[3].classList.add('arrowRotateDownAnimation'), arrows[3].style = 'transform: rotate(0deg); top: -8px;'}, 1500);
+    setTimeout(function () {sort_animator.style.top = '-73px'}, 2000);
+    setTimeout(function () {arrows[2].classList.remove('arrowRotateDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[3].classList.remove('arrowRotateDownAnimation', 'arrowFlashAnimation')}, 2750);
+    setTimeout(function () {sort_arrow.addEventListener('click', sort_roll);}, 2750);
+    setTimeout(function () {arrows[2].classList.add('arrowFlashAnimation')}, 2750);
+    setTimeout(function () {arrows[3].classList.add('arrowFlashAnimation')}, 2825);
+    sort_open = false;
+}
+
+sort_roll = () => { 
+    
+    top_sort = getComputedStyle(sort_animator).top;
+    if(!sort_open) {
+        sort_roll_down();        
+    } else if (sort_open) {
+        sort_roll_up();
+    }
+}
+sort_arrow.addEventListener('click', sort_roll);
+
+
+
+/* END CONSTRUCTION */
+
+
+
+
+
+
+
+
+
+
 
 
 load_pokedex = (current_page, check_load, check_search) => {
@@ -530,14 +609,17 @@ disable_page_buttons = () => {
     previous_button.disabled = true;
 }
 
-let flash_animations;
 
 flash_animations = () => {
     num_window.classList.add('numWindowAnimation');
-    arrows[0].classList.add('arrowFlashAnimation');
-    setTimeout(function () {arrows[1].classList.add('arrowFlashAnimation')}, 125);
-    arrows[2].classList.add('numArrowAnimation');
-    setTimeout(function () {arrows[3].classList.add('numArrowAnimation')}, 125);
+
+    arrows.forEach( (arrow, i) => {
+        if (i % 2 != 0) {
+            setTimeout(function () {arrow.classList.add('arrowFlashAnimation')}, 125);
+        } else {
+            arrow.classList.add('arrowFlashAnimation');
+        }
+    });
 }
 
 window.onload = () => {
@@ -551,12 +633,17 @@ previous_button.addEventListener('click', previous_page);
 first_button.addEventListener('click', first_page);
 last_button.addEventListener('click', last_page);
 search_bar.addEventListener('click', search_init);
-search_bar.addEventListener('keyup', search_pokemon)
-set_10.addEventListener('click', set_num_val)
-set_20.addEventListener('click', set_num_val)
-set_50.addEventListener('click', set_num_val)
-set_100.addEventListener('click', set_num_val)
-set_all.addEventListener('click', set_num_val)
+search_bar.addEventListener('keyup', search_pokemon);
+set_10.addEventListener('click', set_num_val);
+set_20.addEventListener('click', set_num_val);
+set_50.addEventListener('click', set_num_val);
+set_100.addEventListener('click', set_num_val);
+set_all.addEventListener('click', set_num_val);
+sort_ascend_num.addEventListener('click', set_sort_val);
+sort_descend_num.addEventListener('click', set_sort_val);
+sort_ascend_alpha.addEventListener('click', set_sort_val);
+sort_descend_alpha.addEventListener('click', set_sort_val);
+    /** 
     /** 
  * Get the list of Pokemon from the pokemon api ​https://pokeapi.co/
  * Should have a screen that lists pokemon in a Grid Style
